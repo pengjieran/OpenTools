@@ -1,0 +1,6 @@
+
+cat $1 > temp
+
+cat $2 >> temp
+
+cat temp > $2

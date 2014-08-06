@@ -1,0 +1,24 @@
+To compile:
+   Set $MLJDIR = location of mlj dir. (Ex. /home/mad1333/mlj)
+   Next, go to the shared directory and run make c45.
+   
+To run ID3 Driver:
+
+   Then from the shared directory run:
+
+	java -cp .:../id3:../c45 C45Driver ../../data/$DATASET
+
+   where $DATASET = the name of the data set you want to run.
+   This will run the Driver over $DATASET.names, $DATASET.test, and $DATASET.data in the ../../data directory.
+
+   A second argument can be supplied to change the loglevel and global loglevel to a different setting. Example:
+
+	java -cp .:../id3:../c45 C45Driver ../../data/$DATASET 4
+
+This will change the loglevel to 4 and produce more output. Not supplying a value results in a default value of 0.
+
+   A third option allows switching between tree display specifications as they are in the MLC binary and specifications as they are in the MLC code. To switch between these settings, add true or false as a third setting. Example:
+
+	java -cp .:../id3:../c45 C45Driver ../../data/$DATASET 4 false
+
+False sets to the source specifications and true sets to the binary specifications. The default is true.

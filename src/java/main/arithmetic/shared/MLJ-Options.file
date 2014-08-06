@@ -1,0 +1,24 @@
+
+MAX_ATTR_VALS 20
+MAX_LABEL_VALS 20
+REMOVE_UNKNOWN_INST no
+CORRUPT_UNKNOWN_RATE 0
+UNKNOWN_RATE_SEED 7258789
+CTR 0
+INDUCER 0
+WRAPPER 3
+
+# CHC Options
+finalgeneration 10
+populationsize 10
+inducer naive
+FitnessDistribution .75,.125,.125
+
+# CHC Printing options
+print_all_hypothesis: no
+best_overall_hypotheses: yes
+average_fitness_per_generation: no
+best_Spawned_Hypothesis_of_generation: yes
+best_overall_Hypothesis_of_generation: no
+best_fitness_of_each_generation: no
+correct_vs_incorrect_instances: no

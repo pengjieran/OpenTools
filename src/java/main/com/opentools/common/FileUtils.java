@@ -47,6 +47,7 @@ public class FileUtils {
 	 * @param encoding         文本文件打开的编码方式
 	 * @return                 返回文本文件的内容
 	 */
+	@SuppressWarnings("resource")
 	public static String readTxt(String filePathAndName, String encoding) throws IOException {
 		encoding = encoding.trim();
 		StringBuffer str = new StringBuffer("");
@@ -102,6 +103,7 @@ public class FileUtils {
 	 * @param paths      无限级目录参数，各级目录以单数线区分 例如 a|b|c
 	 * @return           返回创建文件后的路径
 	 */
+	@SuppressWarnings("unused")
 	public static String createFolders(String folderPath, String paths) {
 		String txts = folderPath;
 		try {
@@ -250,6 +252,7 @@ public class FileUtils {
 	 * @param newPathFile 拷贝到新绝对路径带文件名
 	 * @return
 	 */
+	@SuppressWarnings({ "unused", "resource" })
 	public static void copyFile(String oldPathFile, String newPathFile) {
 		try {
 			int bytesum = 0;

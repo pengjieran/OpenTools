@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java/main"/>
+	<classpathentry excluding="com/" kind="src" path="src/java/test"/>
+	<classpathentry kind="src" path="src/java/test/com"/>
+	<classpathentry kind="lib" path="libs/java/activation.jar"/>
+	<classpathentry kind="lib" path="libs/java/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="libs/java/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="libs/java/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="libs/java/mail-plugin.jar"/>
+	<classpathentry kind="lib" path="libs/java/mail.jar"/>
+	<classpathentry kind="lib" path="libs/java/ognl-3.0.6.jar"/>
+	<classpathentry kind="lib" path="libs/java/zxing-core-2.3.0.jar"/>
+	<classpathentry kind="lib" path="libs/java/zxing-javase-2.3.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

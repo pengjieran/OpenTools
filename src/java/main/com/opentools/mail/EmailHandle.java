@@ -1,4 +1,4 @@
-package com.jiangge.utils.mail;
+package com.opentools.mail;
 
 import java.util.Iterator;
 import java.util.LinkedList;

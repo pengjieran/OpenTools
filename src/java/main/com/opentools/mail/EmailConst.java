@@ -1,4 +1,4 @@
-package com.jiangge.utils.mail;
+package com.opentools.mail;
 
 /**
  * 邮件发送需要的常量定义

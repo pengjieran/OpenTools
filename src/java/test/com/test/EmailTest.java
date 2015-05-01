@@ -1,7 +1,8 @@
 package test;
 
-import com.jiangge.utils.EmailUtils;
-import com.jiangge.utils.mail.EmailConst;
+import com.opentools.common.EmailUtils;
+import com.opentools.mail.EmailConst;
+
 
 public class EmailTest {
 

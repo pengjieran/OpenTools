@@ -1,4 +1,4 @@
-package com.test;
+package test;
 
 import java.awt.Font;
 import java.io.File;

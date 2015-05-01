@@ -1,8 +1,12 @@
-package com.jiangge.utils;
+package com.opentools.common;
 
 import java.util.List;
 
-import com.jiangge.utils.mail.EmailHandle;
+import com.opentools.web.StringUtils;
+
+import com.opentools.mail.EmailHandle;
+
+
 
 /**
  * 邮件发送工具类

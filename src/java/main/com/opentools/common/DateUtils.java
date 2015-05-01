@@ -1,4 +1,4 @@
-package com.jiangge.utils;
+package com.opentools.common;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

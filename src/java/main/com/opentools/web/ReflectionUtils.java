@@ -16,7 +16,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * 通过反射的方式操作对象中的属性,无视访问修饰符，不经过getter/setter方法
- * @author 彭洁冉 email:pjr0206@163.com
+ * @author Aaron email:pjr0206@163.com
  *
  */
 public final class ReflectionUtils {

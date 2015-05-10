@@ -15,6 +15,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * 大文件读取，支持多核处理器处理大文件，读出的每行数据不按文件写入顺序
+ * @author Aaron
+ *
+ */
 public class BigFileReader {
 	private int threadSize;
 	private String charset;
@@ -202,6 +207,8 @@ public class BigFileReader {
 					handle(bos.toByteArray());
 				}
 				cyclicBarrier.await();// 测试性能用
+				bos.close();
+				System.exit(0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

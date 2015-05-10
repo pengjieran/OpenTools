@@ -9,7 +9,7 @@ public class Main {
 					@Override
 					public void handle(String line) {
 						System.out.println(line);
-						//increat();
+						
 					}
 				});
 		builder.withTreahdSize(10).withCharset("utf8")
@@ -17,4 +17,5 @@ public class Main {
 		BigFileReader bigFileReader = builder.build();
 		bigFileReader.start();
 	}
+
 }

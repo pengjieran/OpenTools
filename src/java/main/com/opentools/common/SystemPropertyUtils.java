@@ -1,47 +1,31 @@
 package com.opentools.common;
 
+import java.util.Properties;
+import java.util.Set;
+
 /**
  * 获取系统参数的工具类
  * 
- * @author Aaron java.version
+ * @author Aaron 
+ *         java.version Java 运行时环境版本
  * 
- *         Java 运行时环境版本
+ *         java.vendor Java 运行时环境供应商
  * 
- *         java.vendor
+ *         java.vendor.url Java 供应商的 URL
  * 
- *         Java 运行时环境供应商
+ *         java.home Java 安装目录
  * 
- *         java.vendor.url
+ *         java.vm.specification.version Java 虚拟机规范版本
  * 
- *         Java 供应商的 URL
+ *         java.vm.specification.vendor Java 虚拟机规范供应商
  * 
- *         java.home
+ *         java.vm.specification.name Java 虚拟机规范名称
  * 
- *         Java 安装目录
+ *         java.vm.version Java 虚拟机实现版本
  * 
- *         java.vm.specification.version
+ *         java.vm.vendor Java 虚拟机实现供应商
  * 
- *         Java 虚拟机规范版本
- * 
- *         java.vm.specification.vendor
- * 
- *         Java 虚拟机规范供应商
- * 
- *         java.vm.specification.name
- * 
- *         Java 虚拟机规范名称
- * 
- *         java.vm.version
- * 
- *         Java 虚拟机实现版本
- * 
- *         java.vm.vendor
- * 
- *         Java 虚拟机实现供应商
- * 
- *         java.vm.name
- * 
- *         Java 虚拟机实现名称
+ *         java.vm.name Java 虚拟机实现名称
  * 
  *         java.specification.version
  * 
@@ -145,5 +129,14 @@ public class SystemPropertyUtils {
 	}
 
 	private SystemPropertyUtils() {
+	}
+	
+	public static void main(String[] args) {
+		Properties properties = System.getProperties();
+		Set<String> names = properties.stringPropertyNames();
+		for (String key : names) {
+			
+			System.out.println(key + "====" + System.getProperty(key));
+		}
 	}
 }

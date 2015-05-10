@@ -19,7 +19,8 @@ public final class Des {
 		try {
 			
 		Des des = new Des(strDefaultKey);
-		String encrypt = des.encrypt("aaa");
+		String encrypt = des.encrypt("http://www.baidu.com");
+		System.out.println(encrypt);
 		System.out.println(des.decrypt(encrypt));
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -15,24 +15,25 @@ import org.apache.commons.lang.WordUtils;
  * 
  */
 public class StringUtils {
-	
+
 	/**
 	 * 将字符串依据驼峰法转化.注意,该方法只会将delimiter后的字符给大写,不在delimiter后的字符即便是大写也可能被
 	 * 转换成小写,比如productType_MODEL会被转换为product_type_model
 	 */
 	public static String toCamelcase(String str, char[] delimiters) {
-		
+
 		String result = WordUtils.capitalizeFully(str, delimiters);
 		for (char c : delimiters) {
-			
+
 			result = result.replace(String.valueOf(c), "");
 		}
 		int len = result.length();
-		result = result.substring(0, 1).toLowerCase() + result.substring(1, len);
-		
+		result = result.substring(0, 1).toLowerCase()
+				+ result.substring(1, len);
+
 		return result;
 	}
-	
+
 	/**
 	 * 编码转换iso8859-1 --> utf-8
 	 * 
@@ -62,28 +63,36 @@ public class StringUtils {
 		}
 		return sor;
 	}
-	
+
 	/**
 	 * 分割字符串(忽略指定区块内的内容)
-	 * 如input("foo,bar,c;qual=\"baz,blurb\",d;junk=\"quux,syzygy\"", ",", "\\\"", , "\\\"")
+	 * 如input("foo,bar,c;qual=\"baz,blurb\",d;junk=\"quux,syzygy\"", ",",
+	 * "\\\"", , "\\\"")
 	 * ouput["foo","bar","c;qual=\"baz,blurb\"","d;junk=\"quux,syzygy\""]
 	 * 
-	 * @param str 待分割字符串
-	 * @param splitter 分割符
-	 * @param ignoreBlockLeftDelimiter 忽略区块左定界符
-	 * @param ignoreBlockLeftDelimiter 忽略区块右定界符
+	 * @param str
+	 *            待分割字符串
+	 * @param splitter
+	 *            分割符
+	 * @param ignoreBlockLeftDelimiter
+	 *            忽略区块左定界符
+	 * @param ignoreBlockLeftDelimiter
+	 *            忽略区块右定界符
 	 * 
 	 * @return String[]
 	 */
-	public static String[] split(String str, String splitter, String ignoreBlockLeftDelimiter, String ignoreBlockRightDelimiter) {
-		
-//		String regEx = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
-//		String regEx = splitter + "(?=([^" + ignoreBlockLeftDelimiter + "]*" + ignoreBlockRightDelimiter
-//					+ "[^" + ignoreBlockLeftDelimiter + "]*" + ignoreBlockRightDelimiter + ")*[^" + ignoreBlockRightDelimiter + "]*$)";
-		
+	public static String[] split(String str, String splitter,
+			String ignoreBlockLeftDelimiter, String ignoreBlockRightDelimiter) {
+
+		// String regEx = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
+		// String regEx = splitter + "(?=([^" + ignoreBlockLeftDelimiter + "]*"
+		// + ignoreBlockRightDelimiter
+		// + "[^" + ignoreBlockLeftDelimiter + "]*" + ignoreBlockRightDelimiter
+		// + ")*[^" + ignoreBlockRightDelimiter + "]*$)";
+
 		String escapedIgnoreBlockLeftDelimiter = escapeForRegEx(ignoreBlockLeftDelimiter);
 		String escapedIgnoreBlockRightDelimiter = escapeForRegEx(ignoreBlockRightDelimiter);
-		
+
 		StringBuilder regEx = new StringBuilder();
 		regEx.append(escapeForRegEx(splitter));
 		regEx.append("(?=([^");
@@ -97,55 +106,59 @@ public class StringUtils {
 		regEx.append(")*[^");
 		regEx.append(escapedIgnoreBlockRightDelimiter);
 		regEx.append("]*$)");
-		
+
 		return str.split(regEx.toString());
 	}
-	
+
 	/**
 	 * 仿sql语句中的like语法
 	 * 
-	 * @param str 字符串
-	 * @param expr 匹配表达式
-	 * @param ignoreCase 是否忽略大小写
+	 * @param str
+	 *            字符串
+	 * @param expr
+	 *            匹配表达式
+	 * @param ignoreCase
+	 *            是否忽略大小写
 	 * 
 	 * @return boolean
 	 */
 	public static boolean like(String str, String expr, boolean ignoreCase) {
-		
+
 		if (ignoreCase) {
-			
+
 			expr = expr.toLowerCase(); // ignoring locale for now
 			str = str.toLowerCase();
 		}
-	    
-//		expr = Pattern.quote(expr);
-	    expr = expr.replace(".", "\\."); // "\\" is escaped to "\"
-	    // ... escape any other potentially problematic characters here
-	    expr = expr.replace("?", ".");
-	    expr = expr.replace("%", ".*");
-//	    expr = Pattern.quote(expr);
-//	    expr = expr.replace("(", "\\u0028");	    
-//	    expr = expr.replace(")", "\\u0029");
-	    // TODO,这里转义圆括号实际上是针对项目的特殊情况,将来应该重构成更通用的,如Pattern.quote
-	    expr = expr.replace("(", "\\(");
-	    expr = expr.replace(")", "\\)");
-	    
-	    return str.matches(expr);
+
+		// expr = Pattern.quote(expr);
+		expr = expr.replace(".", "\\."); // "\\" is escaped to "\"
+		// ... escape any other potentially problematic characters here
+		expr = expr.replace("?", ".");
+		expr = expr.replace("%", ".*");
+		// expr = Pattern.quote(expr);
+		// expr = expr.replace("(", "\\u0028");
+		// expr = expr.replace(")", "\\u0029");
+		// TODO,这里转义圆括号实际上是针对项目的特殊情况,将来应该重构成更通用的,如Pattern.quote
+		expr = expr.replace("(", "\\(");
+		expr = expr.replace(")", "\\)");
+
+		return str.matches(expr);
 	}
-	
+
 	/**
 	 * 转换富文本内容,使适合于html页面显示
+	 * 
 	 * @param sor
 	 * @return
 	 */
 	public static String change4html(String sor) {
-		if (sor!=null) {
-			String dst = sor.replaceAll("\"", "'");//目前只进行"转换为'
+		if (sor != null) {
+			String dst = sor.replaceAll("\"", "'");// 目前只进行"转换为'
 			return dst;
-		}else {
+		} else {
 			return sor;
 		}
-		
+
 	}
 
 	/**
@@ -175,6 +188,52 @@ public class StringUtils {
 			sb.append(Integer.toString(intTmp, 16));
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * 将二进制转换为字符串
+	 * 
+	 * @param b
+	 * @return
+	 */
+	public static String byte2hex(byte[] b) {
+		StringBuffer sb = new StringBuffer();
+		String stmp = "";
+		for (int n = 0; n < b.length; n++) {
+			stmp = Integer.toHexString(b[n] & 0XFF);
+			if (stmp.length() == 1) {
+				sb.append("0" + stmp);
+			} else {
+				sb.append(stmp);
+			}
+
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * 将字符串转换为二进制
+	 * @param str
+	 * @return
+	 */
+	public static byte[] hex2byte(String str) {
+
+		if (str == null)
+			return null;
+		str = str.trim();
+		int len = str.length();
+		if (len == 0 || len % 2 == 1)
+			return null;
+		byte[] b = new byte[len / 2];
+		try {
+			for (int i = 0; i < str.length(); i += 2) {
+				b[i / 2] = (byte) Integer
+						.decode("0X" + str.substring(i, i + 2)).intValue();
+			}
+			return b;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -351,7 +410,7 @@ public class StringUtils {
 		}
 		return csv.toString();
 	}
-	
+
 	/**
 	 * Remove Underscores from a string and replaces first Letters with
 	 * Capitals. foo_bar becomes FooBar
@@ -587,11 +646,12 @@ public class StringUtils {
 
 		return (stringBuffer.toString());
 	}
-	
+
 	/**
 	 * 为正则表达式用到的字符串转义
 	 * 
-	 * @param str 字符串
+	 * @param str
+	 *            字符串
 	 * 
 	 * @return 转义结果
 	 */
@@ -599,19 +659,19 @@ public class StringUtils {
 
 		// TODO,这里现在用的是if else的分支,可能存在现成的工具类,将来可以重构
 		if ("\"".equals(str)) {
-			
+
 			return "\\\"";
 		} else if ("[".equals(str)) {
-			
+
 			return "\\[";
 		} else if ("]".equals(str)) {
-			
+
 			return "\\]";
 		} else if (".".equals(str)) {
-			
+
 			return "\\.";
 		} else {
-			
+
 			return str;
 		}
 	}

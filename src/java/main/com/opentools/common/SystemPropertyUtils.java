@@ -1,7 +1,5 @@
 package com.opentools.common;
 
-import java.util.Properties;
-import java.util.Set;
 
 /**
  * 获取系统参数的工具类
@@ -127,16 +125,22 @@ public class SystemPropertyUtils {
 	public static String getFileSeparator() {
 		return System.getProperty("file.separator");
 	}
+	
+	public static String getOSName() {
+		return System.getProperty("os.name");
+	}
 
 	private SystemPropertyUtils() {
 	}
 	
 	public static void main(String[] args) {
-		Properties properties = System.getProperties();
+		/*Properties properties = System.getProperties();
 		Set<String> names = properties.stringPropertyNames();
 		for (String key : names) {
 			
 			System.out.println(key + "====" + System.getProperty(key));
-		}
+		}*/
+		
+		System.out.println(getOSName());
 	}
 }

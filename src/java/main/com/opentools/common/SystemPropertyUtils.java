@@ -25,77 +25,41 @@ package com.opentools.common;
  * 
  *         java.vm.name Java 虚拟机实现名称
  * 
- *         java.specification.version
+ *         java.specification.version Java 运行时环境规范版本
  * 
- *         Java 运行时环境规范版本
+ *         java.specification.vendor Java 运行时环境规范供应商
  * 
- *         java.specification.vendor
+ *         java.specification.name Java 运行时环境规范名称
  * 
- *         Java 运行时环境规范供应商
+ *         java.class.version Java 类格式版本号
  * 
- *         java.specification.name
+ *         java.class.path Java 类路径
  * 
- *         Java 运行时环境规范名称
+ *         java.library.path 加载库时搜索的路径列表
  * 
- *         java.class.version
+ *         java.io.tmpdir 默认的临时文件路径
  * 
- *         Java 类格式版本号
+ *         java.compiler 要使用的 JIT 编译器的名称
  * 
- *         java.class.path
+ *         java.ext.dirs 一个或多个扩展目录的路径
  * 
- *         Java 类路径
+ *         os.name 操作系统的名称
  * 
- *         java.library.path
+ *         os.arch 操作系统的架构
  * 
- *         加载库时搜索的路径列表
+ *         os.version 操作系统的版本
  * 
- *         java.io.tmpdir
+ *         file.separator 文件分隔符（在 UNIX 系统中是“/”）
  * 
- *         默认的临时文件路径
+ *         path.separator 路径分隔符（在 UNIX 系统中是“:”）
  * 
- *         java.compiler
+ *         line.separator 行分隔符（在 UNIX 系统中是“/n”）
  * 
- *         要使用的 JIT 编译器的名称
+ *         user.name 用户的账户名称
  * 
- *         java.ext.dirs
+ *         user.home 用户的主目录
  * 
- *         一个或多个扩展目录的路径
- * 
- *         os.name
- * 
- *         操作系统的名称
- * 
- *         os.arch
- * 
- *         操作系统的架构
- * 
- *         os.version
- * 
- *         操作系统的版本
- * 
- *         file.separator
- * 
- *         文件分隔符（在 UNIX 系统中是“/”）
- * 
- *         path.separator
- * 
- *         路径分隔符（在 UNIX 系统中是“:”）
- * 
- *         line.separator
- * 
- *         行分隔符（在 UNIX 系统中是“/n”）
- * 
- *         user.name
- * 
- *         用户的账户名称
- * 
- *         user.home
- * 
- *         用户的主目录
- * 
- *         user.dir
- * 
- *         用户的当前工作目录
+ *         user.dir 用户的当前工作目录
  */
 public class SystemPropertyUtils {
 

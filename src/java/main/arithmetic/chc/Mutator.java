@@ -18,15 +18,15 @@ public class Mutator {
   public static double getCMFactor() { return cmfactor; }
 
   public static Hypothesis[] cataclysmicMutation(Hypothesis[] parent, int mult) {
-    Hypothesis[] finalhypo = new Hypothesis[parent.length*mult];
     if (parent == null) {
       return null;
     }
     else {
-      for (int i = 0; i < parent.length; i++) {
-        finalhypo = CHC.addHypo(finalhypo, cataclysmicMutation(parent[i], mult), 10);
-      }
-      return CHC.cleanHypo(finalhypo); 
+    	Hypothesis[] finalhypo = new Hypothesis[parent.length*mult];
+    	for (int i = 0; i < parent.length; i++) {
+    		finalhypo = CHC.addHypo(finalhypo, cataclysmicMutation(parent[i], mult), 10);
+    	}
+    	return CHC.cleanHypo(finalhypo); 
     }
   }
 

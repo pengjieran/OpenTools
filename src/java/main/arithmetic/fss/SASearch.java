@@ -511,8 +511,7 @@ public static final String SEED_HELP = "The seed for the simulated annealing ran
       }
 
    // get real error for final node if called for
-      if((bestRetired != null)&&(((State)graph.get_state(bestRetired)).get_fitness() >=
-            ((State)graph.get_state(bestNode)).get_fitness()))
+      if((bestRetired != null)&&(((State)graph.get_state(bestRetired)).get_fitness() >= ((State)graph.get_state(bestNode)).get_fitness()))
       {
          logOptions.LOG(2, "Final best node is best retired node\n");
          bestNode = bestRetired;

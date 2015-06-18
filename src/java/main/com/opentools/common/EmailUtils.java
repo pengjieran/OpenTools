@@ -2,8 +2,6 @@ package com.opentools.common;
 
 import java.util.List;
 
-import com.opentools.web.StringUtils;
-
 import com.opentools.mail.EmailHandle;
 
 
@@ -65,7 +63,7 @@ public class EmailUtils {
 			emailHandle.setBody(content);
 			emailHandle.setTo(toAddress);
 			/**添加抄送**/
-			if(StringUtils.isNotEmpty(ccAdress)){
+			if(StringUtil.isNotEmpty(ccAdress)){
 				emailHandle.setCopyTo(ccAdress);
 			}
 			emailHandle.setFrom(fromAddress);
@@ -130,7 +128,7 @@ public class EmailUtils {
 			emailHandle.setBody(content);
 			emailHandle.setTo(toAddress);
 			/**添加抄送**/
-			if(StringUtils.isNotEmpty(ccAdress)){
+			if(StringUtil.isNotEmpty(ccAdress)){
 				emailHandle.setCopyTo(ccAdress);
 			}
 			emailHandle.setFrom(fromAddress);

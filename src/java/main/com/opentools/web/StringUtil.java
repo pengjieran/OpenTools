@@ -1,4 +1,4 @@
-package com.opentools.common;
+package com.opentools.web;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import org.apache.commons.lang.WordUtils;
  * @author Dean
  * 
  */
-public class StringUtils {
+public class StringUtil {
 
 	/**
 	 * 将字符串依据驼峰法转化.注意,该方法只会将delimiter后的字符给大写,不在delimiter后的字符即便是大写也可能被
@@ -245,15 +245,15 @@ public class StringUtils {
 	public static String convert2Html(String origine) {
 		String outStr = null;
 		if (origine != null) {
-			String tmp = StringUtils.replace(origine, ">", "&gt;");
-			String tmp2 = StringUtils.replace(tmp, "<", "&lt;");
+			String tmp = StringUtil.replace(origine, ">", "&gt;");
+			String tmp2 = StringUtil.replace(tmp, "<", "&lt;");
 			// String tmp3 = StringUtils.replace(tmp2," ","&nbsp;");
 
-			String tmp4 = StringUtils.replace(tmp2, "\r\n", "<br>");
+			String tmp4 = StringUtil.replace(tmp2, "\r\n", "<br>");
 
-			String tmp5 = StringUtils.replace(tmp4, "\n", "<br>");
+			String tmp5 = StringUtil.replace(tmp4, "\n", "<br>");
 
-			String tmp6 = StringUtils.replace(tmp5, "&lt;br&gt;", "<br>");
+			String tmp6 = StringUtil.replace(tmp5, "&lt;br&gt;", "<br>");
 
 			outStr = tmp6;
 		} else {
@@ -265,8 +265,8 @@ public class StringUtils {
 	public static String convert2Html2(String origine) {
 		String outStr = null;
 		if (origine != null) {
-			String tmp = StringUtils.replace(origine, ">", "&gt;");
-			String tmp2 = StringUtils.replace(tmp, "<", "&lt;");
+			String tmp = StringUtil.replace(origine, ">", "&gt;");
+			String tmp2 = StringUtil.replace(tmp, "<", "&lt;");
 			outStr = tmp2;
 		} else {
 			outStr = "";
@@ -277,8 +277,8 @@ public class StringUtils {
 	public static String convert2Text(String origine) {
 		String outStr = null;
 		if (origine != null) {
-			String tmp = StringUtils.replace(origine, "&gt;", ">");
-			String tmp2 = StringUtils.replace(tmp, "&lt;", "<");
+			String tmp = StringUtil.replace(origine, "&gt;", ">");
+			String tmp2 = StringUtil.replace(tmp, "&lt;", "<");
 			outStr = tmp2;
 		} else {
 			outStr = "";

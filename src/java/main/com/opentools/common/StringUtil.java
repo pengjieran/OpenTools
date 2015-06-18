@@ -1,4 +1,4 @@
-package com.opentools.web;
+package com.opentools.common;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * @author Aaron
  * @date 2013-12-18 11:22
  */
-public class StringUtils {
+public class StringUtil {
 
 	/**
 	 * 检查字符串是否为空

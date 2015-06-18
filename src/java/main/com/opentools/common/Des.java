@@ -7,6 +7,8 @@ import java.security.Key;
 
 import javax.crypto.Cipher;
 
+import com.opentools.web.StringUtil;
+
 public final class Des {
 	private static final String strDefaultKey = "dean";
 
@@ -77,7 +79,7 @@ public final class Des {
 	 * @throws Exception
 	 */
 	public String decrypt(String strIn) throws Exception {
-		return new String(decrypt(StringUtils.hexStr2ByteArr(strIn)));
+		return new String(decrypt(StringUtil.hexStr2ByteArr(strIn)));
 	}
 
 	/**
@@ -101,7 +103,7 @@ public final class Des {
 	 * @throws Exception
 	 */
 	public String encrypt(String strIn) throws Exception {
-		return StringUtils.byteArr2HexStr(encrypt(strIn.getBytes()));
+		return StringUtil.byteArr2HexStr(encrypt(strIn.getBytes()));
 	}
 
 	/**

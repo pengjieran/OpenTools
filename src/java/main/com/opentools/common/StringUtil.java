@@ -14,14 +14,13 @@ public class StringUtil {
 	 * @param str 字符串
 	 * @return
 	 */
-	public static boolean isEmpty(String str) {
-		if (str == null) {
-			return true;
-		} else if (str.length() == 0) {
-			return true;
-		} else {
+	public static boolean isEmpty(String src) {
+		
+		if (null != src && !"".equals(src) && !" ".equals(src) && src.length() > 0 && !src.isEmpty())
+		{
 			return false;
 		}
+		return true;
 	}
 	
 	/**

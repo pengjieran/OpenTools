@@ -116,4 +116,6 @@ public class StringUtil {
 		return src;
 	}
 
+	
+	private StringUtil() {}
 }

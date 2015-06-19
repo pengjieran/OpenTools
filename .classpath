@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="libs/java/zxing-core-2.3.0.jar"/>
 	<classpathentry kind="lib" path="libs/java/zxing-javase-2.3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/java/libphonenumber-7.0.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

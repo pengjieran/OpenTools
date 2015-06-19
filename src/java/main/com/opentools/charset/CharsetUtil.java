@@ -1,5 +1,7 @@
 package com.opentools.charset;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -45,6 +47,34 @@ public class CharsetUtil
      */
     public static final String GBK = "GBK";
     
+    /**
+     * 将默认的编码方式转换为目标编码方式
+     * @param srcStr
+     * @param newCharSet
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static String changeCharSet(String srcStr, String newCharSet) throws UnsupportedEncodingException
+    {
+    	if (null != srcStr)
+    	{
+    		byte[] bs = srcStr.getBytes();
+    		return new String(bs, newCharSet);
+    	}
+    	
+    	return null;
+    }
+    
+    /**
+     * 获取默认的字符集
+     * @return
+     */
+    public static String getDefaultCharSet()
+    {
+    	OutputStreamWriter writer = new OutputStreamWriter(new ByteArrayOutputStream());
+    	String encoding = writer.getEncoding();
+    	return encoding;
+    }
 
     /**
      * 

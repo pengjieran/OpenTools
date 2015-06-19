@@ -19,6 +19,8 @@ public class PhoneUtil {
 	
 	public static final String COUNTRY_CODE = "countryCode";
 	
+	public static final String NUMBER_TYPE = "number_type";
+	
 	public static final String NATIONAL_NUMBER = "national_number";
 	
 	public static final String E164_NUMBER = "E164_number";
@@ -48,7 +50,7 @@ public class PhoneUtil {
 		phones.put(COUNTRY_CODE, String.valueOf(phoneNumber.getCountryCode()));
 		phones.put(NATIONAL_NUMBER, String.valueOf(phoneNumber.getNationalNumber()));
 		phones.put(E164_NUMBER, isvalidNumber ? phoneNumberUtil.format(phoneNumber, PhoneNumberFormat.E164) : "invalid");
-		
+		phones.put(NUMBER_TYPE, phoneNumberUtil.getNumberType(phoneNumber).name());
 		return phones;
 	}
 	private PhoneUtil(){}

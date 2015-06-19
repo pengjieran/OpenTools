@@ -25,6 +25,13 @@ public class PhoneUtil {
 
 	private static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 	
+	/**
+	 * 解析手机号和电话号码
+	 * @param phone	需要解析的号码
+	 * @param defaultRegion 默认为CN
+	 * @return
+	 * @throws NumberParseException
+	 */
 	public static Map<String, String> getPhoneNumber(String phone, String defaultRegion) throws NumberParseException
 	{
 		Map<String, String> phones = new LinkedHashMap<String, String>();

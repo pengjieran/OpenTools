@@ -3,6 +3,8 @@ package com.opentools.file;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.net.FileNameMap;
+import java.net.URLConnection;
 
 import com.opentools.common.SystemPropertyUtils;
 
@@ -31,6 +33,18 @@ public class FileUtil {
 		randomAccessFile.close();
 		
 		return src;
+	}
+	
+	/**
+	 * 获取文件的mime类型
+	 * @param file
+	 * @return
+	 */
+	public static String getMimeType(String file)
+	{
+		FileNameMap fileNameMap = URLConnection.getFileNameMap();
+		String type = fileNameMap.getContentTypeFor(file);
+		return type;
 	}
 	
 	private FileUtil() {}

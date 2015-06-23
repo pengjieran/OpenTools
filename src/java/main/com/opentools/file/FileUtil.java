@@ -16,7 +16,7 @@ import com.opentools.common.SystemPropertyUtils;
 public class FileUtil {
 	
 	/**
-	 * 在文件末尾追加一行
+	 * 在文件末尾追加一行,以默认编码方式写入
 	 * @param file
 	 * @param src
 	 * @return
@@ -33,6 +33,27 @@ public class FileUtil {
 		randomAccessFile.close();
 		
 		return src;
+	}
+	
+	/**
+	 * 在文件末尾追加一行，以指定编码方式追加
+	 * @param file
+	 * @param str
+	 * @param encoding
+	 * @return
+	 * @throws IOException
+	 */
+	public static String appendLine(File file, String str, String encoding) throws IOException
+	{
+		String lineSeparator = SystemPropertyUtils.getLineSeparator();
+		RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+		long length = randomAccessFile.length();
+		randomAccessFile.seek(length);
+		String src = (lineSeparator + str);
+		randomAccessFile.write(src.getBytes(encoding));
+		randomAccessFile.close();
+		
+		return str;
 	}
 	
 	/**

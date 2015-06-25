@@ -1,5 +1,8 @@
 package com.opentools.common;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -30,6 +33,29 @@ public class TimeUtil {
 		if (2 == type && days > 7) return true;
 		
 		return false;
+	}
+	
+	/**
+	 * 获取今天的开始时间和明天的开始时间
+	 * @param type，1：获取今天0时0分0秒的时间，2：获取明天0时0分0秒的时间
+	 * @return
+	 */
+	public static Date getDate(int type)
+	{
+		LocalDate localDate = LocalDate.now();
+		LocalDateTime localDateTime = localDate.atTime(0, 0, 0);
+		
+		if (1 == type)
+		{
+			return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+		}
+		else
+		{
+			LocalDate date = localDate.plusDays(1);
+			LocalDateTime time = date.atTime(0, 0, 0);
+			return Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
+		}
+		
 	}
 	
 	private TimeUtil(){}

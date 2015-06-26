@@ -1,5 +1,6 @@
 package com.opentools.common;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -56,6 +57,22 @@ public class TimeUtil {
 			return Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
 		}
 		
+	}
+	
+	/**
+	 * 判断给定时间是不是今天，无误差，但需要jdk8以上的版本支持
+	 * @param date
+	 * @return
+	 */
+	public static boolean isToday(Date date)
+	{
+		Instant instant = date.toInstant();
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+		LocalDate localDate = localDateTime.toLocalDate();
+		
+		LocalDate now = LocalDate.now();
+		
+		return now.equals(localDate);
 	}
 	
 	private TimeUtil(){}

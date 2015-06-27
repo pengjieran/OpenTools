@@ -16,7 +16,7 @@ public class EmulatorUtil
 	
 	private static final String BOARD = "borad";
 	
-	private static final String BOOTLOADER = "bootloader";
+	//private static final String BOOTLOADER = "bootloader";
 	
 	private static final String BRAND = "brand";
 	
@@ -47,7 +47,7 @@ public class EmulatorUtil
 		deviceids.add("000000000000000");
 		
 		String board = getValue(headers.get(BOARD));
-		String bootloader = getValue(headers.get(BOOTLOADER));
+		//String bootloader = getValue(headers.get(BOOTLOADER));
 		String device = getValue(headers.get(DEVICE));
 		String product = getValue(headers.get(PRODUCT));
 		String brand = getValue(headers.get(BRAND));

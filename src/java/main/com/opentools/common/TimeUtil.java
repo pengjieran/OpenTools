@@ -75,5 +75,24 @@ public class TimeUtil {
 		return now.equals(localDate);
 	}
 	
+	/**
+	 * 获取精确的毫秒数，因为在windows下的时间粒度大概为15-16毫秒，而在linux下为1毫秒，有时候会造成时间不准的情况
+	 * @return
+	 */
+	public static long getMSTime()
+	{
+		return 0;
+		//return (System.nanoTime() / 1000000L);
+	}
+	
+	public static void main(String[] args) {
+		
+		for (int i = 0; i < 100; i++)
+		{
+			System.out.println(System.currentTimeMillis());
+			System.out.println(getMSTime());
+		}
+	}
+	
 	private TimeUtil(){}
 }

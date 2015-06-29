@@ -41,7 +41,7 @@ public static void main(String[] args)
 
    InstanceList traindata = new InstanceList(args[0],".names",".data");
    InstanceList testdata = new InstanceList(args[0],".names",".test");
-   boolean[] bitstring = {false, true, false, false};
+   //boolean[] bitstring = {false, true, false, false};
 
    System.out.println("The probability of error is: "+id3.train_and_test(traindata,testdata));
 

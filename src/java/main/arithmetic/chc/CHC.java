@@ -28,7 +28,7 @@ public class CHC {
   private Population currentpopulation;
   /** used with dist. The new system of data distribution is used if
     * this is true. */
-  private boolean newsystem = false;
+  //private boolean newsystem = false;
 
   /** Stores the newline character "\n" */
   public static final String ENDL = "\n";
@@ -41,8 +41,8 @@ public class CHC {
   public static final String GENERATIONPRINTING = "generation";
   public static final String TOTALPRINTING = "total";
 
-  private boolean usepopboundaries;
-  private int minpopulation = 2;  
+  //private boolean usepopboundaries;
+  //private int minpopulation = 2;  
 
   Options options = null;  
 
@@ -94,7 +94,7 @@ public class CHC {
         }
       }
       if (args[i].toLowerCase().equals("f")) {
-        newsystem = true;
+        //newsystem = true;
       }
       if (args[i].length() >= 8) {
         if (args[i].substring(0,8).toLowerCase().equals("bitmask=")) {
@@ -257,7 +257,7 @@ public class CHC {
     * @return an array with the added hypo */ 
   public static Hypothesis[] addHypo(Hypothesis[] hypoarray,
                             Hypothesis addition, int increment) {
-    boolean hasnulls = false;
+    //boolean hasnulls = false;
     int firstnull = -1;
       if ( increment < 1 ) { increment = 1; }
     if (hypoarray == null) {
@@ -297,7 +297,7 @@ public class CHC {
     * @return an array with the added hypo */ 
   public static String[] addString(String[] strarray,
                                  String addition, int increment) {
-    boolean hasnulls = false;
+    //boolean hasnulls = false;
     int firstnull = -1;
       if ( increment < 1) { increment = 1; }
     if (strarray == null) {

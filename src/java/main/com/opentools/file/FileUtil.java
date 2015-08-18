@@ -1,7 +1,10 @@
 package com.opentools.file;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.FileNameMap;
 import java.net.URLConnection;
@@ -66,6 +69,39 @@ public class FileUtil {
 		FileNameMap fileNameMap = URLConnection.getFileNameMap();
 		String type = fileNameMap.getContentTypeFor(file);
 		return type;
+	}
+	
+	/**
+	 * 将一个文件输出为byte数组
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
+	public static byte[] readFile(File file) throws IOException
+	{
+		FileInputStream fis = new FileInputStream(file);
+		byte[] bs = readFile(fis);
+		return bs;
+	}
+	
+	/**
+	 * 将ios转换为byte数组
+	 * @param ios
+	 * @return
+	 * @throws IOException
+	 */
+	public static byte[] readFile(InputStream ios) throws IOException
+	{
+		ByteArrayOutputStream ous = new ByteArrayOutputStream();
+		byte[] buffer = new byte[4096];
+		int read = 0;
+        while ( (read = ios.read(buffer)) != -1 ) {
+            ous.write(buffer, 0, read);
+        }
+        byte[] bs = ous.toByteArray();
+        ous.close();
+        ios.close();
+        return bs;
 	}
 	
 	private FileUtil() {}

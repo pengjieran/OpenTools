@@ -12,7 +12,7 @@ public class NumberUtils {
 	}
 
 	/**
-	 * jiang一个数字等分成n等份，多余的加在最后一个数字
+	 * 将一个数字等分成i等份，多余的加在最后一个数字
 	 * @param i
 	 * @param bisectNumber
 	 * @return

@@ -123,8 +123,6 @@ public class EmulatorUtil
 		}
 	}
 
-	private EmulatorUtil()
-	{
-	}
+	private EmulatorUtil(){}
 
 }

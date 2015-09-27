@@ -1,12 +1,14 @@
 package com.opentools.web;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -104,6 +106,18 @@ public class HttpUtils {
         }
         return result;
     }   
+    
+    /**
+     * 依赖第三方工具
+     * 批量上传文件
+     * @param json
+     * @param mapFile
+     * @return
+     */
+    public static String sendFile(String json, Map<String, File> mapFile)
+    {
+    	return "";
+    }
     
     /**
      * 将HashMap参数组装成字符串

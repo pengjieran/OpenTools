@@ -105,13 +105,13 @@ public class HttpUtils {
             }
         }
         return result;
-    }   
+    }
     
     /**
      * 依赖第三方工具
      * 批量上传文件
-     * @param json
-     * @param mapFile
+     * @param json	携带的参数
+     * @param mapFile，上传的文件key和value值
      * @return
      */
     public static String sendFile(String json, Map<String, File> mapFile)
@@ -137,4 +137,6 @@ public class HttpUtils {
     	}
     	return sb.toString();
     }
+	
+	
 }

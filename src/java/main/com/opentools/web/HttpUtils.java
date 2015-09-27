@@ -8,8 +8,26 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.UUID;
+
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import com.sun.net.httpserver.spi.HttpServerProvider;
 
 /**
  * HTTP POST和GET处理工具类
@@ -108,15 +126,51 @@ public class HttpUtils {
     }
     
     /**
-     * 依赖第三方工具
-     * 批量上传文件
-     * @param json	携带的参数
-     * @param mapFile，上传的文件key和value值
+     * 文件上传的工具类
+     * @param url,接收请求的地址
+     * @param map 请求的参数
+     * @param mapFile 发送的文件
      * @return
+     * @throws ClientProtocolException
+     * @throws IOException
      */
-    public static String sendFile(String json, Map<String, File> mapFile)
+    public static CloseableHttpResponse sendFile(String url, Map<String, String> map, Map<String, File> mapFile) throws ClientProtocolException, IOException
     {
-    	return "";
+    	CloseableHttpClient closeableHttpClient = HttpClientBuilder.create().build();
+    	HttpPost httpPost = new HttpPost(url);
+    	MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+    	if (null != mapFile && !mapFile.isEmpty())
+    	{
+    		
+    		Set<String> keySet = mapFile.keySet();
+        	
+        	for (String key : keySet)
+        	{
+        		File file = mapFile.get(key);
+        		if (null != file && file.exists())
+        		{
+        			FileBody fileBody = new FileBody(mapFile.get(key));
+        			multipartEntityBuilder.addPart(key, fileBody);
+        		}
+        	}
+    	}
+    	
+    	if (null != map && !map.isEmpty())
+    	{
+    		Set<String> keySet = map.keySet();
+    		for (String key : keySet)
+    		{
+    			String value = map.get(key);
+    			if (null != value && !value.isEmpty())
+    			{
+    				multipartEntityBuilder.addTextBody(key, value);
+    			}
+    		}
+    	}
+    	
+    	httpPost.setEntity(multipartEntityBuilder.build());
+    	CloseableHttpResponse response = closeableHttpClient.execute(httpPost);
+    	return response;
     }
     
     /**
@@ -138,5 +192,25 @@ public class HttpUtils {
     	return sb.toString();
     }
 	
+	public static void main(String[] args) {
+		
+		Map<String, File> mapFile = new LinkedHashMap<>();
+		File file = new File("D:" + File.pathSeparator + "BugReport.txt");
+		mapFile.put(UUID.randomUUID().toString(), file);
+		
+		Map<String, String> maps = new LinkedHashMap<>();
+		try {
+			CloseableHttpResponse response = HttpUtils.sendFile("http://echo.200please.com", maps, mapFile);
+			Header[] headers = response.getAllHeaders();
+			for (Header header : headers)
+			{
+				System.out.println(header.getName() + "=====" + header.getValue());
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

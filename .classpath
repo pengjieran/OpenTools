@@ -14,6 +14,15 @@
 	<classpathentry kind="lib" path="libs/java/zxing-javase-2.3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/java/libphonenumber-7.0.6.jar"/>
-	<classpathentry kind="lib" path="libs/java"/>
+	<classpathentry kind="lib" path="libs/java/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="libs/java/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/java/fluent-hc-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/java/httpclient-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/java/httpclient-cache-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/java/httpclient-win-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/java/httpcore-4.4.3.jar"/>
+	<classpathentry kind="lib" path="libs/java/httpmime-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/java/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="libs/java/jna-platform-4.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

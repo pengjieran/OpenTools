@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,17 +18,15 @@ import java.util.UUID;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import com.sun.net.httpserver.spi.HttpServerProvider;
+import com.opentools.charset.CharsetUtil;
 
 /**
  * HTTP POST和GET处理工具类
@@ -167,8 +166,10 @@ public class HttpUtils {
     			}
     		}
     	}
-    	
-    	httpPost.setEntity(multipartEntityBuilder.build());
+    	multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+    	multipartEntityBuilder.setCharset(Charset.forName(CharsetUtil.UTF_8));
+    	HttpEntity httpEntity = multipartEntityBuilder.build();
+    	httpPost.setEntity(httpEntity);
     	CloseableHttpResponse response = closeableHttpClient.execute(httpPost);
     	return response;
     }
@@ -195,12 +196,12 @@ public class HttpUtils {
 	public static void main(String[] args) {
 		
 		Map<String, File> mapFile = new LinkedHashMap<>();
-		File file = new File("D:" + File.pathSeparator + "BugReport.txt");
+		File file = new File("D://BugReport.txt");
 		mapFile.put(UUID.randomUUID().toString(), file);
 		
 		Map<String, String> maps = new LinkedHashMap<>();
 		try {
-			CloseableHttpResponse response = HttpUtils.sendFile("http://echo.200please.com", maps, mapFile);
+			CloseableHttpResponse response = HttpUtils.sendFile("http://localhost:8080/filesystem/filesystem", maps, mapFile);
 			Header[] headers = response.getAllHeaders();
 			for (Header header : headers)
 			{

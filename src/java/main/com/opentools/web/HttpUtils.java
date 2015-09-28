@@ -196,12 +196,14 @@ public class HttpUtils {
 	public static void main(String[] args) {
 		
 		Map<String, File> mapFile = new LinkedHashMap<>();
-		File file = new File("D://BugReport.txt");
-		mapFile.put(UUID.randomUUID().toString(), file);
+		File file = new File("D://开发版_20150923.zip");
+		String replaceAll = UUID.randomUUID().toString().replaceAll("-", "");
+		System.out.println(replaceAll);
+		mapFile.put("pjr" + replaceAll, file);
 		
 		Map<String, String> maps = new LinkedHashMap<>();
 		try {
-			CloseableHttpResponse response = HttpUtils.sendFile("http://localhost:8080/filesystem/filesystem", maps, mapFile);
+			CloseableHttpResponse response = HttpUtils.sendFile("http://192.168.1.43:8080/upload/fileupload", maps, mapFile);
 			Header[] headers = response.getAllHeaders();
 			for (Header header : headers)
 			{

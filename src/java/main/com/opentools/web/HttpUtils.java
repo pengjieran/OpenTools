@@ -203,7 +203,7 @@ public class HttpUtils {
 		
 		Map<String, String> maps = new LinkedHashMap<>();
 		try {
-			CloseableHttpResponse response = HttpUtils.sendFile("http://192.168.1.43:8080/upload/fileupload", maps, mapFile);
+			CloseableHttpResponse response = HttpUtils.sendFile("http://192.168.1.43:8080/fileupload", maps, mapFile);
 			Header[] headers = response.getAllHeaders();
 			for (Header header : headers)
 			{

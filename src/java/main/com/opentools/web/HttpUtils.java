@@ -175,6 +175,35 @@ public class HttpUtils {
     }
     
     /**
+     * 像某个url发送指定的内容，不限于文件只需要能转换问byte[]就可以，发送时指定期contentType
+     * @param url
+     * @param params
+     * @param files
+     * @return
+     */
+    public static CloseableHttpResponse post(String url, Map<String, Map<String, byte[]>> files)
+    {
+    	CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+    	HttpPost httpPost = new HttpPost(url);
+    	MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+    	if (null != files && !files.isEmpty())
+    	{
+    		Set<String> keySet = files.keySet();
+    		if (null != keySet && !keySet.isEmpty())
+    		{
+    			keySet.forEach(key -> {
+    				Map<String, byte[]> map = files.get(key);
+    				if (null != map && !map.isEmpty())
+    				{
+    					
+    				}
+    			});
+    		}
+    	}
+    	return null;
+    }
+    
+    /**
      * 将HashMap参数组装成字符串
      * @param map
      * @return

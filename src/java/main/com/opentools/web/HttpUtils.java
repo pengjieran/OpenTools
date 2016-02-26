@@ -20,6 +20,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
@@ -175,32 +176,65 @@ public class HttpUtils {
     }
     
     /**
-     * 像某个url发送指定的内容，不限于文件只需要能转换问byte[]就可以，发送时指定期contentType
+     * 发送携带header和参数的文件
      * @param url
+     * @param headers
      * @param params
      * @param files
-     * @return
+     * @throws IOException 
+     * @throws ClientProtocolException 
      */
-    public static CloseableHttpResponse post(String url, Map<String, Map<String, byte[]>> files)
-    {
-    	CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+    public static CloseableHttpResponse sendPost(String url, Map<String, String> headers, Map<String, String> params, Map<String, File> files) throws ClientProtocolException, IOException {
+    	
+    	CloseableHttpClient closeableHttpClient = HttpClientBuilder.create().build();
     	HttpPost httpPost = new HttpPost(url);
     	MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-    	if (null != files && !files.isEmpty())
-    	{
-    		Set<String> keySet = files.keySet();
-    		if (null != keySet && !keySet.isEmpty())
-    		{
-    			keySet.forEach(key -> {
-    				Map<String, byte[]> map = files.get(key);
-    				if (null != map && !map.isEmpty())
-    				{
-    					
-    				}
-    			});
+    	
+    	if (null != headers && !headers.isEmpty()) {
+    		
+    		Set<String> keySet = headers.keySet();
+    		
+    		for (String key : keySet) {
+    			
+    			httpPost.addHeader(key, headers.get(key));
+    			
     		}
     	}
-    	return null;
+    	
+    	if (null != files && !files.isEmpty())
+    	{
+    		
+    		Set<String> keySet = files.keySet();
+        	
+        	for (String key : keySet)
+        	{
+        		File file = files.get(key);
+        		if (null != file && file.exists())
+        		{
+        			FileBody fileBody = new FileBody(files.get(key));
+        			multipartEntityBuilder.addPart(key, fileBody);
+        		}
+        	}
+    	}
+    	
+    	if (null != params && !params.isEmpty())
+    	{
+    		Set<String> keySet = params.keySet();
+    		for (String key : keySet)
+    		{
+    			String value = params.get(key);
+    			if (null != value && !value.isEmpty())
+    			{
+    				multipartEntityBuilder.addTextBody(key, value, ContentType.DEFAULT_TEXT);
+    			}
+    		}
+    	}
+    	multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+    	multipartEntityBuilder.setCharset(Charset.forName(CharsetUtil.UTF_8));
+    	HttpEntity httpEntity = multipartEntityBuilder.build();
+    	httpPost.setEntity(httpEntity);
+    	CloseableHttpResponse response = closeableHttpClient.execute(httpPost);
+    	return response;
     }
     
     /**

@@ -11,7 +11,7 @@ import org.apache.commons.lang.WordUtils;
 /**
  * the string tools
  * 
- * @author Dean
+ * @author Aaron
  * 
  */
 public class StringUtil {

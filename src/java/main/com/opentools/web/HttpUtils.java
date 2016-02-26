@@ -9,13 +9,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.UUID;
 
-import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -255,28 +252,4 @@ public class HttpUtils {
     	}
     	return sb.toString();
     }
-	
-	public static void main(String[] args) {
-		
-		Map<String, File> mapFile = new LinkedHashMap<>();
-		File file = new File("D://开发版_20150923.zip");
-		String replaceAll = UUID.randomUUID().toString().replaceAll("-", "");
-		System.out.println(replaceAll);
-		mapFile.put("pjr" + replaceAll, file);
-		
-		Map<String, String> maps = new LinkedHashMap<>();
-		try {
-			CloseableHttpResponse response = HttpUtils.sendFile("http://192.168.1.43:8080/fileupload", maps, mapFile);
-			Header[] headers = response.getAllHeaders();
-			for (Header header : headers)
-			{
-				System.out.println(header.getName() + "=====" + header.getValue());
-			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 }

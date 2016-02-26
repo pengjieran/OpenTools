@@ -60,6 +60,8 @@ package com.opentools.common;
  *         user.home 用户的主目录
  * 
  *         user.dir 用户的当前工作目录
+ *         
+ *         catalina.base  tomcat服务器安装路径，例：/usr/local/tomcat
  */
 public class SystemPropertyUtils {
 
@@ -95,16 +97,5 @@ public class SystemPropertyUtils {
 	}
 
 	private SystemPropertyUtils() {
-	}
-	
-	public static void main(String[] args) {
-		/*Properties properties = System.getProperties();
-		Set<String> names = properties.stringPropertyNames();
-		for (String key : names) {
-			
-			System.out.println(key + "====" + System.getProperty(key));
-		}*/
-		
-		System.out.println(getOSName());
 	}
 }

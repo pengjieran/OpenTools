@@ -24,7 +24,7 @@ import com.google.zxing.common.HybridBinarizer;
 
 /**
  * 生成和解析二维码相关的辅助工具类
- * @author Dean		pjr0206@163.com
+ * @author Aaron		pjr0206@163.com
  *
  */
 public final class QRUtils {

@@ -15,6 +15,8 @@ public class ContentType {
 	
 	public static final String CONTENTTYPE_HTML_VALUE = "text/html";//网页文件，包含html或者jsp等文件
 	
+	public static final String CONTENTTYPE_JSON_VALUE = "application/json";//网页文件，包含html或者jsp等文件
+	
 	private ContentType() {}
 
 }

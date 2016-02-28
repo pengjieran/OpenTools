@@ -61,7 +61,7 @@ package com.opentools.common;
  * 
  *         user.dir 用户的当前工作目录
  *         
- *         catalina.base  tomcat服务器安装路径，例：/usr/local/tomcat
+ *         catalina.base  tomcat服务器安装路径，例：/usr/local/tomcat,可能其它服务器的名称和现在的不一样
  */
 public class SystemPropertyUtils {
 

@@ -3,6 +3,7 @@ package com.opentools.common.io;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -46,6 +47,31 @@ public class IOUtils {
 		bis.close();
 		ois.close();
 		return object;
+	}
+	
+	/**
+	 * 将输出流中的数据读出为byte数组
+	 * @param is 输出流
+	 * @param closed 是否关闭输出流
+	 * @return
+	 * @throws IOException
+	 */
+	public static byte[] toByteArray(InputStream is, boolean closed) throws IOException {
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		
+		byte[] data = new byte[1024];
+		while(-1 != is.read(data)) {
+			
+			baos.write(data);
+		}
+		
+		byte[] array = baos.toByteArray();
+		if (closed) is.close();
+		
+		baos.flush();
+		baos.close();
+		return array;
 	}
 	
 	private IOUtils() {}

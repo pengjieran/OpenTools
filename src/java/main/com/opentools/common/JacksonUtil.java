@@ -90,5 +90,12 @@ public class JacksonUtil {
 		}
 	}
 	
-	
+	public static SerializationFeature getSerializationFeature() {
+		
+		//SerializationFeature.WRITE_DATES_AS_TIMESTAMPS：序列化日期时以timestamps输出，默认true
+		SerializationFeature serializationFeature = SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
+		
+		//SerializationFeature.WRITE_ENUMS_USING_TO_STRING：序列化枚举是以toString()来输出，默认false，即默认以name()来输出
+		return serializationFeature;
+	}
 }

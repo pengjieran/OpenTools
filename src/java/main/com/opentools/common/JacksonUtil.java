@@ -1,7 +1,11 @@
 package com.opentools.common;
 
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -50,6 +54,30 @@ public class JacksonUtil {
 			
 		} catch (JsonProcessingException e) {
 
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * ObjectMapper支持从byte[]、File、InputStream、字符串等数据的JSON反序列化
+	 * @param objectMapper
+	 * @param json
+	 * @param classes
+	 * @return
+	 */
+	public static <T> T parse(ObjectMapper objectMapper, String json, Class<T> classes) {
+		
+		 try {
+			
+			return objectMapper.readValue(json, classes);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+			return null;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}

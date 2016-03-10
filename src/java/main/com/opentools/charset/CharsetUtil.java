@@ -3,6 +3,7 @@ package com.opentools.charset;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 /**
  * 字符编码相关的工具类
@@ -94,5 +95,14 @@ public class CharsetUtil
     	}
     	
     	return null;
+    }
+    
+    /**
+     * 返回一个utf标准编码
+     * @return
+     */
+    public static Charset getUTF8CharSet() {
+    	
+    	return Charset.forName(UTF_8);
     }
 }

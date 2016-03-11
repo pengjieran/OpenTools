@@ -72,6 +72,27 @@ public class CollectionUtil {
 		return true;
 	}
 	
+	/**
+	 * 过滤掉含有重复的指定key值的数据
+	 * @param list
+	 */
+	public static void filterList(List<Map<String, Object>> list, String key) {
+		
+		List<Object> keys = new ArrayList<>();
+		for (Map<String, Object> map : list) {
+			
+			Object object = map.get(key);
+			
+			if (!keys.contains(object)) {
+				
+				keys.add(object);
+			} else {
+				
+				list.remove(map);
+			}
+		}
+	}
+	
 	private CollectionUtil(){}
 
 }

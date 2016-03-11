@@ -75,7 +75,9 @@ public class CollectionUtil {
 	/**
 	 * 过滤掉含有重复的指定key值的数据
 	 * @param list
+	 * 该方法危险，未经测试
 	 */
+	@Deprecated
 	public static void filterList(List<Map<String, Object>> list, String key) {
 		
 		List<Object> keys = new ArrayList<>();

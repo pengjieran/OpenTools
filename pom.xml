@@ -6,6 +6,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>OpenTools</name>
+	<developers>
+		<developer>
+			<name>pengjieran</name>
+			<email>pengjieran@gmail.com</email>
+			<roles>
+				<role>software architect</role>
+			</roles>
+		</developer>
+	</developers>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.zxing</groupId>

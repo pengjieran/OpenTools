@@ -6,7 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
 
 /**
  * the string tools

@@ -187,6 +187,7 @@ public final class PhoneNumberHelper {
 		System.out.println(stringBuilder.toString());
 	}
 
+	@SuppressWarnings({ "incomplete-switch", "unused" })
 	private static void inspectNumber(String numberStr)
 			throws NumberParseException {
 		PhoneNumber number = phoneUtil.parseAndKeepRawInput(numberStr, "CN");

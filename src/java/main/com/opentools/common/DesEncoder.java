@@ -9,8 +9,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * DES 加密、解密
@@ -146,8 +145,8 @@ public final class DesEncoder {
 	 */
 	private String byteToString(byte[] dataByte) {
 		String returnStr = null;
-		BASE64Encoder be = new BASE64Encoder();
-		returnStr = be.encode(dataByte);
+		byte[] bs = Base64.encodeBase64(dataByte);
+		returnStr = new String(bs);
 		return returnStr;
 	}
 
@@ -161,8 +160,6 @@ public final class DesEncoder {
 	 * @throws Exception
 	 */
 	private byte[] stringToByte(String datasource) throws IOException {
-		BASE64Decoder bd = new BASE64Decoder();
-		byte[] sorData = bd.decodeBuffer(datasource);
-		return sorData;
+		return Base64.decodeBase64(datasource.getBytes());
 	}
 }

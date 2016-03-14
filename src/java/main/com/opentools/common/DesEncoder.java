@@ -14,7 +14,7 @@ import org.apache.commons.codec.binary.Base64;
 /**
  * DES 加密、解密
  * 
- * @author Dean
+ * @author Aaron
  */
 public final class DesEncoder {
 

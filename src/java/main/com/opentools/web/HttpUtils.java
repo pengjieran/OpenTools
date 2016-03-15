@@ -1,18 +1,27 @@
 package com.opentools.web;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -233,6 +242,174 @@ public class HttpUtils {
     	CloseableHttpResponse response = closeableHttpClient.execute(httpPost);
     	return response;
     }
+    
+    /**
+     * jdk原生方法get方式的请求
+     * @param url
+     * @return
+     */
+    public static List<String> Get(String url) {
+    	
+		try {
+			
+			URL getUrl = new URL(url);
+			URLConnection connection = getUrl.openConnection();
+			HttpURLConnection urlConnection = (HttpURLConnection) connection;
+			urlConnection.setRequestMethod("GET");
+			InputStream is = (InputStream) connection.getContent();
+			List<String> lines = IOUtils.readLines(is);
+			return lines;
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			return null;
+		}		
+	}
+    
+    /**
+     * post方式的请求，参数会处理成key=value形式
+     * @param url
+     * @param headers
+     * @param params
+     * @return
+     */
+    public static List<String> Post(String url, Map<String, String> headers, Map<String, String> params) {
+		
+		try {
+			
+			String param = null;
+			
+			if (null != params && !params.isEmpty()) {
+				
+				StringBuilder builder = new StringBuilder();
+				
+				Set<String> keySet = params.keySet();
+				List<String> keys = new ArrayList<>(keySet);
+				for (String key : keys) {
+					
+					builder.append(key + "=" + params.get(key));
+					if (!key.equals(keys.get(keys.size() - 1))) {
+						
+						builder.append("&");
+					}
+				}
+				
+				param = builder.toString();
+			}
+			
+			URL postUrl = new URL(url);
+			URLConnection connection = postUrl.openConnection();
+			HttpURLConnection urlConnection = (HttpURLConnection) connection;
+			urlConnection.setRequestMethod("POST");
+			
+			if (null != headers && !headers.isEmpty()) {
+				
+				Set<String> keySet = headers.keySet();
+				
+				for (String key : keySet) {
+					
+					connection.addRequestProperty(key, headers.get(key));
+				}
+			}
+			
+			connection.setDoInput(true);
+			connection.setDoOutput(true);
+			if (null != param) {
+				
+				byte[] data = param.getBytes(Charset.forName("UTF-8"));
+				OutputStream stream = connection.getOutputStream();
+				IOUtils.write(data, stream);
+				stream.flush();
+				stream.close();
+			}
+			
+			connection.connect();
+			
+			InputStream stream = connection.getInputStream();
+			
+			List<String> lines = IOUtils.readLines(stream);
+			
+			stream.close();
+			
+			return lines;
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+    /**
+	 * 多文件上传,以模拟表单提交方式上传文件
+	 * @param files
+	 * @param url
+	 * @return
+	 */
+	public static List<String> postUpload(List<String> files, String url, Map<String, String> params) {
+		
+		String BOUNDARY = "---------7d4a6d158c9"; // 定义数据分隔线
+		
+		try {
+			
+			URL postUrl = new URL(url);
+			HttpURLConnection conn = (HttpURLConnection) postUrl.openConnection();
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			conn.setUseCaches(false);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+			conn.setRequestProperty("Charsert", "UTF-8");
+			conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+			
+			if (null != params && !params.isEmpty()) {
+				
+				Set<String> keySet = params.keySet();
+				
+				for (String key : keySet) {
+					conn.setRequestProperty(key, params.get(key));
+				}
+			}
+			
+			OutputStream out = new DataOutputStream(conn.getOutputStream());
+			byte[] end_data = ("\r\n--" + BOUNDARY + "--\r\n").getBytes();// 定义最后数据分隔线
+			
+			for (String filePath : files) {
+				
+				File file = new File(filePath);
+				StringBuilder sb = new StringBuilder();
+				sb.append("--");
+				sb.append(BOUNDARY);
+				sb.append("\r\n");
+				sb.append("Content-Disposition: form-data;name=\"file"+ file.getName() +"\";filename=\""+ file.getName() + "\"\r\n");
+				sb.append("Content-Type:application/octet-stream\r\n\r\n");
+				byte[] data = sb.toString().getBytes();
+				out.write(data);
+				DataInputStream in = new DataInputStream(new FileInputStream(file));
+				int bytes = 0;
+				byte[] bufferOut = new byte[1024];
+				while ((bytes = in.read(bufferOut)) != -1) {
+					out.write(bufferOut, 0, bytes);
+				}
+				out.write("\r\n".getBytes()); //多个文件时，二个文件之间加入这个
+				in.close();
+			}
+			
+			out.write(end_data);
+			out.flush();
+			out.close();
+			
+			InputStream stream = conn.getInputStream();
+			List<String> lines = IOUtils.readLines(stream);
+			stream.close();
+			return lines;
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			return null;
+		}		
+	}
     
     /**
      * 将HashMap参数组装成字符串

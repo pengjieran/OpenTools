@@ -19,7 +19,9 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
+import org.junit.Test;
 
 /**
  * 使用jdk原生的编解码方式对某个指定数据加密解密
@@ -73,5 +75,23 @@ public class CodeUtil {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	/**
+	 * 利用commons-codec做一次md5处理
+	 * @param src
+	 * @return
+	 */
+	public static String Md5(String src) {
+		
+		return DigestUtils.md5Hex(src);
+		
+	}
+	
+	@Test
+	public void test() {
+		
+		String md5 = CodeUtil.Md5("123456");
+		System.out.println(md5);
 	}
 }

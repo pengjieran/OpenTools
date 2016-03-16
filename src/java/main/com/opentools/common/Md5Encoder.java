@@ -7,7 +7,7 @@ package com.opentools.common;
  * f96b697d7cb7938d525a2f31aaf161d0 MD5 ("abcdefghijklmnopqrstuvwxyz") =
  * c3fcd3d76192e4007dfb496cca67e13b
  * 
- * @author Dean
+ * @author Aaron
  * 
  *         传入参数：一个字节数组 传出参数：字节数组的 MD5 结果字符串
  */

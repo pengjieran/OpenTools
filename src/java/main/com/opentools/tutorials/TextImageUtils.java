@@ -15,7 +15,8 @@ import javax.imageio.ImageIO;
  * 将文字生成图片
  * 电子邮件的font 为Font.PLAIN
  * 电话号码和产品关键特征的font为Font.BOLD
- * @author Dean
+ * @author Aaron
+ * @since 2015年5月12日
  *
  */
 public final class TextImageUtils {

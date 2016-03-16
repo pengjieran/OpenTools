@@ -122,14 +122,22 @@ public class CodeUtil {
 		}
 	}
 	
+	public static String SHA512encode(String src) {
+		
+		return DigestUtils.sha512Hex(src.getBytes());
+				
+	}
+	
 	@Test
 	public void test() {
 		
-		String md5 = CodeUtil.Md5("123456");
+		/*String md5 = CodeUtil.Md5("123456");
 		System.out.println(md5);
 		
 		String md5jdk = CodeUtil.MD5JDK("123456");
-		System.out.println(md5jdk);
+		System.out.println(md5jdk);*/
 		
+		String string = CodeUtil.SHA512encode("123456");
+		System.out.println(string);
 	}
 }

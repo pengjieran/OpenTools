@@ -98,11 +98,11 @@ public class CharsetUtil
     }
     
     /**
-     * 返回一个utf标准编码
+     * 返回一个标准编码
      * @return
      */
-    public static Charset getUTF8CharSet() {
+    public static Charset getCharSet(String charset) {
     	
-    	return Charset.forName(UTF_8);
+    	return Charset.forName(charset);
     }
 }

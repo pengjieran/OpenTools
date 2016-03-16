@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -88,10 +89,47 @@ public class CodeUtil {
 		
 	}
 	
+	/**
+	 * 使用jdk原生的方法计算md5值
+	 * @param src
+	 * @return
+	 */
+	public static String MD5JDK(String src) {
+		
+		// 用来将字节转换成 16 进制表示的字符
+		char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(src.getBytes());
+			//计算结果是一个128位的长整数
+			byte[] bs = md.digest();
+			// 每个字节用 16 进制表示的话，使用两个字符
+			char str[] = new char[16 * 2];
+			
+			int k = 0; // 表示转换结果中对应的字符位置
+			for (int i = 0; i < 16; i++) { // 从第一个字节开始，对 MD5 的每一个字节
+				// 转换成 16 进制字符的转换
+				byte byte0 = bs[i]; // 取第 i 个字节
+				str[k++] = hexDigits[byte0 >>> 4 & 0xf]; // 取字节中高 4 位的数字转换,
+				// >>> 为逻辑右移，将符号位一起右移
+				str[k++] = hexDigits[byte0 & 0xf]; // 取字节中低 4 位的数字转换
+			}
+			String s = new String(str); // 转换后的结果转换为字符串
+			return s;
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@Test
 	public void test() {
 		
 		String md5 = CodeUtil.Md5("123456");
 		System.out.println(md5);
+		
+		String md5jdk = CodeUtil.MD5JDK("123456");
+		System.out.println(md5jdk);
+		
 	}
 }

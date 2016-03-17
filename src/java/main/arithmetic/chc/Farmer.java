@@ -30,7 +30,7 @@ public class Farmer extends Thread {
     private int type; // 1 is socket type; 2 is non socket type;
 
     /** the socket used for communication to the main program. */
-    private Socket socket = null;
+    //private Socket socket;
 
     private BufferedReader in;
 
@@ -54,7 +54,7 @@ public class Farmer extends Thread {
 
   public Farmer(Socket socket, Depot depot) {
     super();
-    this.socket = socket;
+    //this.socket = socket;
     this.depot = depot;
     try {
       in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -206,7 +206,7 @@ public class Farmer extends Thread {
     writeSocket(outr, output);
   }
 
-  public static void writeSocket(PrintWriter out, String[] output) {
+  public static boolean writeSocket(PrintWriter out, String[] output) {
     boolean result = true;
     try {
       for (int i = 0; i < output.length; i++) {
@@ -219,6 +219,8 @@ public class Farmer extends Thread {
     catch (Exception e) {
       result = false;
     }
+    
+    return result;
   }
 
 }

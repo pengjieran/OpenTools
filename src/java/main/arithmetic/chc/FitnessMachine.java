@@ -16,14 +16,21 @@ public class FitnessMachine {
     private DataDistributor dist;
     private Inducer inducer;
 
-    private LinkedList hypos = new LinkedList();
-    private LinkedList rhypos = new LinkedList();
-    private boolean go = true;
-    private boolean popsleep;
-    private boolean sleeping;
-    private Population parent;
+    @SuppressWarnings("rawtypes")
+	private LinkedList hypos = new LinkedList();
+    @SuppressWarnings("rawtypes")
+	private LinkedList rhypos = new LinkedList();
+    @SuppressWarnings("unused")
+	private boolean go = true;
+    @SuppressWarnings("unused")
+	private boolean popsleep;
+    @SuppressWarnings("unused")
+	private boolean sleeping;
+    @SuppressWarnings("unused")
+	private Population parent;
 
-    private LinkedList thss = new LinkedList();
+    @SuppressWarnings("rawtypes")
+	private LinkedList thss = new LinkedList();
     private Sys[] sys;
     
 //    private LogOptions logOptions = new LogOptions("WRAPPER");
@@ -67,7 +74,8 @@ public class FitnessMachine {
 */
   }
 
-  private void percentDone() {
+  @SuppressWarnings("unused")
+private void percentDone() {
     if (numfinished == numcalc) {
       Options.LOG(2, "done."+CHC.ENDL);
     }
@@ -83,7 +91,8 @@ public class FitnessMachine {
       }
   }
 
-  public synchronized void add(Hypothesis h) {
+  @SuppressWarnings("unchecked")
+public synchronized void add(Hypothesis h) {
     h.nextStage();
     hypos.add(h);
   }
@@ -99,7 +108,8 @@ public class FitnessMachine {
       }
   }
 
-  private Sys getSys() {
+  @SuppressWarnings("unused")
+private Sys getSys() {
     Sys result = null;
     int count = 0;
     while ( (result == null) && (count < 5) ) {
@@ -166,7 +176,8 @@ public class FitnessMachine {
     return s.setSocket();
   }
 
-  private void checkTHSS() {
+  @SuppressWarnings({ "unused", "unchecked" })
+private void checkTHSS() {
     int i = thss.size();
     while ( i-- > 0 ) {
       THSS temp = (THSS)(thss.removeFirst());

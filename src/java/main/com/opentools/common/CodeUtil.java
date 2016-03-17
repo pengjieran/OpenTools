@@ -122,6 +122,11 @@ public class CodeUtil {
 		}
 	}
 	
+	/**
+	 * 加密出来的字符串为512位16进制数
+	 * @param src
+	 * @return
+	 */
 	public static String SHA512encode(String src) {
 		
 		return DigestUtils.sha512Hex(src.getBytes());

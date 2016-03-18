@@ -1,8 +1,0 @@
-
-cd $1
-for i in *.java
-do
-#  echo $i
-  $1/s add $i
-done
-

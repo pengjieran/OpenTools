@@ -61,4 +61,9 @@ public class RSA
 				+ "Modulus:\t" + this.modulus;
 	}
 
+	public static void main(String[] args) {
+		RSA rsa = new RSA(1024);
+		System.out.println(rsa.toString());
+	}
+	
 }

@@ -1,4 +1,0 @@
-package fss;
-
-import shared.*;
-import shared.Error;

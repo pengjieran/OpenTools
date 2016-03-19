@@ -1,4 +1,4 @@
-package test;
+package com.test;
 
 import com.opentools.tutorials.SwapPosition;
 

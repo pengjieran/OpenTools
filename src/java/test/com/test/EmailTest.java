@@ -1,4 +1,4 @@
-package test;
+package com.test;
 
 import com.opentools.common.EmailUtils;
 import com.opentools.mail.EmailConst;

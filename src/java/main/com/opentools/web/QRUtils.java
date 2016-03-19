@@ -2,6 +2,7 @@ package com.opentools.web;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
 
@@ -57,7 +58,8 @@ public final class QRUtils {
 		hints.put(EncodeHintType.CHARACTER_SET, encodee_mode);
 		hints.put(EncodeHintType.MARGIN, 1);
 		BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, length, length, hints);
-		MatrixToImageWriter.writeToFile(matrix, "png", new File(path));
+		//MatrixToImageWriter.writeToFile(matrix, "png", new File(path));
+		MatrixToImageWriter.writeToStream(matrix, "png", new FileOutputStream(new File(path)));
 	}
 	
 	/**

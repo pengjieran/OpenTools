@@ -158,7 +158,7 @@
 		<testSourceDirectory>src/java/test</testSourceDirectory>
 		<resources>
 			<resource>
-				<directory>src/java/main</directory>
+				<directory>src/java/resource</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>

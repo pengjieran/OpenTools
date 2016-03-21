@@ -26,7 +26,6 @@
 	</properties>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>
-
 		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. 
 		<repository>
 			<id>nexus-repos</id>
@@ -190,12 +189,6 @@
 			<artifactId>httpmime</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-		<dependency>
-			<groupId>jmagick</groupId>
-			<artifactId>jmagick</artifactId>
-			<version>6.6.9</version>
-		</dependency>
-
 	</dependencies>
 	<build>
 		<sourceDirectory>src/java/main</sourceDirectory>

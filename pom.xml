@@ -4,7 +4,6 @@
 	<groupId>OpenTools</groupId>
 	<artifactId>OpenTools</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
 	<name>OpenTools</name>
 	<url>https://github.com/pengjieran/OpenTools</url>
 	<description>开源工具类，里面放的一些工具类可能会有重复，但即使重复，也是两种不同的实现方案</description>
@@ -56,11 +55,12 @@
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>1.5.5</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.zxing</groupId>
+					<artifactId>core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.libphonenumber</groupId>

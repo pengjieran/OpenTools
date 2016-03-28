@@ -29,5 +29,28 @@ public class StreamUtil {
 		string = new String(byteArrayOutputStream.toByteArray(), "UTF-8");
 		return string;
 	}
+	
+	/**
+	 * 将inputStream转换为指定字符编码的字符串
+	 * @param in
+	 * @param charset
+	 * @return
+	 * @throws IOException
+	 */
+	public static String InputStreamToString(InputStream in, String charset) throws IOException {
+		
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		byte[] data = new byte[BUFFER_SIZE];
+		String string = null;
+		int count = 0;
+		while ((count = in.read(data, 0, BUFFER_SIZE)) != -1) {
+			
+			byteArrayOutputStream.write(data, 0, count);
+			
+		}
+		
+		string = new String(byteArrayOutputStream.toByteArray(), charset);
+		return string;
+	}
 
 }

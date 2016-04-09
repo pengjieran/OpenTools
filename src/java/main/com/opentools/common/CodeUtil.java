@@ -133,6 +133,11 @@ public class CodeUtil {
 				
 	}
 	
+	public static String SHA1withRSA(String src) {
+		
+		return DigestUtils.sha1Hex(src);
+	}
+	
 	@Test
 	public void test() {
 		

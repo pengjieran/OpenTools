@@ -142,4 +142,29 @@ public class RedisUtil {
 
         return values;
     }
+
+    /**
+     * 队列压入操作
+     * @param key
+     * @param value
+     */
+    public static void pushList(String key, String value) {
+
+        Jedis jedis = getResource();
+        jedis.lpush(key, value);
+        returnResource(jedis);
+    }
+
+    /**
+     * 弹栈操作
+     * @param key
+     * @return
+     */
+    public static String pop(String key) {
+
+        Jedis jedis = getResource();
+        String value = jedis.lpop(key);
+        returnResource(jedis);
+        return value;
+    }
 }

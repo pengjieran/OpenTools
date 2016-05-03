@@ -18,7 +18,7 @@
 	</developers>
 
 	<properties>
-		<commons-lang3.version>3.3.2</commons-lang3.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
 		<zxing.version>3.2.1</zxing.version>
 		<javax.mail.version>1.5.5</javax.mail.version>
 		<libphone.version>7.2.6</libphone.version>
@@ -49,12 +49,12 @@
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
-			<version>3.2.1</version>
+			<version>${zxing.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
-			<version>3.2.1</version>
+			<version>${zxing.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.google.zxing</groupId>
@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>com.googlecode.libphonenumber</groupId>
 			<artifactId>libphonenumber</artifactId>
-			<version>7.2.6</version>
+			<version>${libphone.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -115,7 +115,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>

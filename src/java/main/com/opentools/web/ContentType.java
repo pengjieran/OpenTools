@@ -15,8 +15,10 @@ public class ContentType {
 	
 	public static final String CONTENTTYPE_HTML_VALUE = "text/html";//网页文件，包含html或者jsp等文件
 	
-	public static final String CONTENTTYPE_JSON_VALUE = "application/json";//网页文件，包含html或者jsp等文件
-	
+	public static final String CONTENTTYPE_JSON_VALUE = "application/json";//返回的是json数据
+
+	public static final String CONTENTTYPE_JSON_UTF8_VALUE = "application/json,charset=utf8";//utf8编码的json数据
+
 	private ContentType() {}
 
 }

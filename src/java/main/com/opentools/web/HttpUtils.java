@@ -1,26 +1,6 @@
 package com.opentools.web;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.opentools.charset.CharsetUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -33,7 +13,13 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import com.opentools.charset.CharsetUtil;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * HTTP POST和GET处理工具类
@@ -45,7 +31,7 @@ public class HttpUtils {
 	/**
      * 向指定URL发送GET方法的请求
      * @param url 发送请求的URL
-     * @param param 请求参数
+     * @param params 请求参数
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, HashMap<String,String> params) {
@@ -86,7 +72,7 @@ public class HttpUtils {
     /**
      * 向指定 URL 发送POST方法的请求
      * @param url 发送请求的 URL
-     * @param param 请求参数
+     * @param params 请求参数
      * @return 所代表远程资源的响应结果
      */
     public static String sendPost(String url, HashMap<String,String> params) {
@@ -337,6 +323,31 @@ public class HttpUtils {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	/**
+	 * post方式发送json格式的数据
+	 * @param url
+	 * @param json
+     * @return
+     */
+	public static List<String> Post(String url, String json) throws Exception {
+
+		URL postUrl = new URL(url);
+		URLConnection connection = postUrl.openConnection();
+		HttpURLConnection urlConnection = (HttpURLConnection) connection;
+		urlConnection.setRequestMethod("POST");
+		urlConnection.setRequestMethod("POST");
+		urlConnection.setDoInput(true);
+		urlConnection.setDoOutput(true);
+		OutputStream outputStream = urlConnection.getOutputStream();
+		IOUtils.write(json.getBytes(Charset.forName("UTF-8")), outputStream);
+		outputStream.flush();
+		outputStream.close();
+		urlConnection.connect();
+		InputStream inputStream = urlConnection.getInputStream();
+		List<String> lines = IOUtils.readLines(inputStream, Charset.forName("UTF-8"));
+		return lines;
 	}
 
     /**

@@ -1,9 +1,6 @@
 package com.opentools.common;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 增加集合工具类，此处的一些方法可能都是自己项目中需要又没有现成的轮子时造出来的
@@ -94,7 +91,27 @@ public class CollectionUtil {
 			}
 		}
 	}
-	
+
+	/**
+	 * 检查集合大小是否为空
+	 * @param collection
+	 * @return
+     */
+	public static boolean isEmpty(Collection<?> collection) {
+
+		if (null == collection || collection.isEmpty() || collection.size() <= 0) return true;
+		return false;
+	}
+
+	/**
+	 * 检查集合是否不为空
+	 * @param collection
+	 * @return
+     */
+	public static boolean isNotEmpty(Collection<?> collection) {
+
+		return !isEmpty(collection);
+	}
 	private CollectionUtil(){}
 
 }

@@ -14,8 +14,8 @@ import java.util.TimeZone;
 public class DateUtils {
 	
 	/**定义常量**/
-	public static final String DATE_FULL_STR = "yyyy-MM-dd HH:mm:ss";
-	public static final String DATE_LONG_STR = "yyyy-MM-dd kk:mm:ss.SSS";
+	public static final String YMDHMS = "yyyy-MM-dd HH:mm:ss";
+	public static final String YMDKMSS = "yyyy-MM-dd kk:mm:ss.SSS";
 	public static final String DATE_SMALL_STR = "yyyy-MM-dd";
 	public static final String DATE_KEY_STR = "yyMMddHHmmss";
     public static final String DATE_All_KEY_STR = "yyyyMMddHHmmss";
@@ -56,7 +56,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static String getNowTime() {
-		SimpleDateFormat df = new SimpleDateFormat(DATE_FULL_STR);
+		SimpleDateFormat df = new SimpleDateFormat(YMDHMS);
 		return df.format(new Date());
 	}
 	
@@ -64,8 +64,8 @@ public class DateUtils {
 	 * 获取系统当前时间(指定返回类型)
 	 * @return
 	 */
-	public static String getNowTime(String type) {
-		SimpleDateFormat df = new SimpleDateFormat(type);
+	public static String getNowTime(String format) {
+		SimpleDateFormat df = new SimpleDateFormat(format);
 		return df.format(new Date());
 	}
 	
@@ -75,7 +75,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static Date parse(String date) {
-		return parse(date,DATE_FULL_STR);
+		return parse(date,YMDHMS);
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class DateUtils {
 	public static long dateToUnixTimestamp(String date) {
 		long timestamp = 0;
 		try {
-			timestamp = new SimpleDateFormat(DATE_FULL_STR).parse(date).getTime();
+			timestamp = new SimpleDateFormat(YMDHMS).parse(date).getTime();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -168,7 +168,7 @@ public class DateUtils {
 	 * @return String 日期字符串
 	 */
 	public static String unixTimestampToDate(long timestamp) {
-		SimpleDateFormat sd = new SimpleDateFormat(DATE_FULL_STR);
+		SimpleDateFormat sd = new SimpleDateFormat(YMDHMS);
 		sd.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 		return sd.format(new Date(timestamp));
 	}
@@ -189,7 +189,7 @@ public class DateUtils {
      * @return String 日期字符串
      */
     public static String TimeStamp2Date(long timestamp){
-        String date = new SimpleDateFormat(DATE_FULL_STR).format(new Date(timestamp));
+        String date = new SimpleDateFormat(YMDHMS).format(new Date(timestamp));
         return date;
     }
 

@@ -20,8 +20,6 @@ public class CityUtil {
 
         String timestamp = DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss");
 
-
-
         List<NameValuePair> nameValuePairList = Form.form().add("method", "taobao.areas.get").add("app_key", "23370620").add("timestamp", timestamp).add("format", "json").add("v", "2.0").add("sign_method","md5").build();
 
         try {

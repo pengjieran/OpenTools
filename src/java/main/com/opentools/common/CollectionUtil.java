@@ -41,14 +41,14 @@ public class CollectionUtil {
 	
 	/**
 	 * 更新一个listmap列表中的数据，
-	 * @param list
+	 * @param destList
 	 * @param map 更新的数据
 	 * @param add 没有时是否新增
 	 * @return
 	 */
-	public static boolean updateListMap(List<Map<Object, Object>> list, Map<Object, Object> map, boolean add) {
+	public static boolean updateListMap(List<Map<Object, Object>> destList, Map<Object, Object> map, boolean add) {
 		
-		for (Map<Object, Object> destMap : list) {
+		for (Map<Object, Object> destMap : destList) {
 			
 			Set<Object> keySet = map.keySet();
 			
@@ -112,6 +112,35 @@ public class CollectionUtil {
 
 		return !isEmpty(collection);
 	}
+
+    /**
+     * 将一个集合输出为指定的分隔符的字符串
+     * @param list
+     * @param operator
+     * @return
+     */
+	public static String listToString(List<Object> list, String operator) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        if (isNotEmpty(list)) {
+
+            for (Object object : list) {
+
+                if (null != object) {
+
+                    stringBuilder.append(object);
+                }
+
+                if (!object.equals(list.get(list.size() - 1))) {
+
+                    stringBuilder.append(operator);
+                }
+            }
+        }
+
+        return stringBuilder.toString();
+	}
+
 	private CollectionUtil(){}
 
 }

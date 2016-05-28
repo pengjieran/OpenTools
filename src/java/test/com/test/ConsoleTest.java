@@ -1,5 +1,7 @@
 package com.test;
 
+import org.junit.Test;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +33,11 @@ public class ConsoleTest {
 		Date date = new Date(1433677228923L);
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
 		System.out.println(format.format(date));
+	}
+
+	@Test
+	public void main() {
+
 	}
 
 }

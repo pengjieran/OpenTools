@@ -93,6 +93,18 @@ public class DateUtils {
 			return null;
 		}
 	}
+
+	/**
+	 * 将时间格式化为指定格式的字符串
+	 * @param date
+	 * @param pattern
+     * @return
+     */
+	public static String parse(Date date, String pattern) {
+
+		SimpleDateFormat df = new SimpleDateFormat(pattern);
+		return df.format(date);
+	}
 	
 	/**
 	 * 两个时间比较

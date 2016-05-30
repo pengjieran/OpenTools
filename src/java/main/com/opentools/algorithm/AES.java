@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 /**
- * 加密和解密算法
+ * AES加密和解密算法
  * @author Aaron
  *
  */

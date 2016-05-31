@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
  * @author Aaron
  * @since 2015年6月15日
  */
-public class CharsetUtil
+public class CharSetUtil
 {
 	
 	/**

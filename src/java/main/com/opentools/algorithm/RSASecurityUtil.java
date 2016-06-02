@@ -1,4 +1,4 @@
-package com.opentools.common;
+package com.opentools.algorithm;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
 
+import com.opentools.common.CodeUtil;
 import org.junit.Test;
 
 /**

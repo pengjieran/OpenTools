@@ -1,6 +1,6 @@
 package com.test;
 
-import com.opentools.common.RSA;
+import com.opentools.algorithm.RSA;
 
 public class RSATest
 {

@@ -1,8 +1,11 @@
-package com.opentools.common;
+package com.opentools.algorithm;
 
 import java.math.BigInteger;
 import java.util.Random;
 
+/**
+ * 非标准RSA加密算法，有待验证
+ */
 public class RSA
 {
 	private final static BigInteger one = new BigInteger("1");

@@ -1,9 +1,15 @@
 package com.test;
 
 import com.opentools.algorithm.RSA;
+import org.junit.Test;
 
 public class RSATest
 {
+
+	@Test
+	public void test() {
+
+	}
 
 	public static void main(String[] args)
 	{

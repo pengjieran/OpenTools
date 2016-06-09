@@ -16,10 +16,4 @@ public class RSATest
 		System.out.println(decrypt);
 
 	}
-
-	public static void main(String[] args)
-	{
-
-	}
-
 }

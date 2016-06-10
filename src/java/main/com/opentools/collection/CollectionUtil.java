@@ -1,4 +1,4 @@
-package com.opentools.common;
+package com.opentools.collection;
 
 import java.util.*;
 

@@ -162,7 +162,7 @@ public class CollectionUtil {
             Object next = iterator.next();
             if (dest.contains(next)) {
 
-                iterator.remove();;
+                iterator.remove();
             }
         }
 

@@ -81,8 +81,8 @@ public class TimeUtil {
 	 */
 	public static long getMSTime()
 	{
-		return 0;
-		//return (System.nanoTime() / 1000000L);
+		//return 0;
+		return (System.nanoTime() / 1000000L);
 	}
 	
 	public static void main(String[] args) {

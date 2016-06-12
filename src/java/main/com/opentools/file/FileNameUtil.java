@@ -23,6 +23,16 @@ public class FileNameUtil {
         return FilenameUtils.getExtension(filePath);
     }
 
+    public static String getFullPathNoEndSeparator(String file) {
+
+        return FilenameUtils.getFullPathNoEndSeparator(file);
+    }
+
+    public static String removeExtension(String fileName) {
+
+        return FilenameUtils.removeExtension(fileName);
+    }
+
     @Test
     public void test() {
 
@@ -30,9 +40,11 @@ public class FileNameUtil {
         try {
 
             file.createNewFile();
-            String path = file.getAbsolutePath();
-            String extension = getExtension(path);
-            System.out.println(extension);
+            String fullPathNoEndSeparator = getFullPathNoEndSeparator("aaa.jpg");
+            System.out.println(fullPathNoEndSeparator);
+            String s = removeExtension("aaa.jpg");
+            System.out.println(s);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

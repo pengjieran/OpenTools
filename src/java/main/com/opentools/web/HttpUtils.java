@@ -1,6 +1,6 @@
 package com.opentools.web;
 
-import com.opentools.charset.CharsetUtil;
+import com.opentools.charset.CharSetUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -160,7 +160,7 @@ public class HttpUtils {
     		}
     	}
     	multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-    	multipartEntityBuilder.setCharset(Charset.forName(CharsetUtil.UTF_8));
+    	multipartEntityBuilder.setCharset(Charset.forName(CharSetUtil.UTF_8));
     	HttpEntity httpEntity = multipartEntityBuilder.build();
     	httpPost.setEntity(httpEntity);
     	CloseableHttpResponse response = closeableHttpClient.execute(httpPost);
@@ -222,7 +222,7 @@ public class HttpUtils {
     		}
     	}
     	multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-    	multipartEntityBuilder.setCharset(Charset.forName(CharsetUtil.UTF_8));
+    	multipartEntityBuilder.setCharset(Charset.forName(CharSetUtil.UTF_8));
     	HttpEntity httpEntity = multipartEntityBuilder.build();
     	httpPost.setEntity(httpEntity);
     	CloseableHttpResponse response = closeableHttpClient.execute(httpPost);

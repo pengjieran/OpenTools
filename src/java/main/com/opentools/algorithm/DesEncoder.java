@@ -1,4 +1,4 @@
-package com.opentools.common;
+package com.opentools.algorithm;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;

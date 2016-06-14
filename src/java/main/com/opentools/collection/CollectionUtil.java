@@ -169,7 +169,6 @@ public class CollectionUtil {
         return src;
     }
 
-    private CollectionUtil() {
-    }
+    private CollectionUtil() {}
 
 }

@@ -8,8 +8,7 @@ package com.opentools.common;
  */
 public class NumberUtils {
 
-	private NumberUtils() {
-	}
+	private NumberUtils() {}
 
 	/**
 	 * 将一个数字等分成i等份，多余的加在最后一个数字

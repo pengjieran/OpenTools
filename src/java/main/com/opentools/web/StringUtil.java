@@ -1,12 +1,12 @@
 package com.opentools.web;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-
-import org.apache.commons.lang3.text.WordUtils;
 
 
 /**
@@ -676,5 +676,4 @@ public class StringUtil {
 			return str;
 		}
 	}
-
 }

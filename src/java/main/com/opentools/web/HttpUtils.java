@@ -421,7 +421,19 @@ public class HttpUtils {
 			return null;
 		}		
 	}
-    
+
+	/**
+	 * 发送post请求
+	 * @param url
+	 * @param bodyString
+	 * @param acceptType
+     * @return
+     */
+	public static String sendPost(String url, String bodyString, String acceptType) {
+
+		return null;
+	}
+
     /**
      * 将HashMap参数组装成字符串
      * @param map

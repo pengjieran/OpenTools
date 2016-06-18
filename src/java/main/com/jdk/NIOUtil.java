@@ -19,6 +19,12 @@ import org.apache.commons.io.IOUtils;
  */
 public class NIOUtil {
 
+	/**
+	 * 将文件读入channel
+	 * @param filePath
+	 * @return
+	 * @throws FileNotFoundException
+     */
 	@SuppressWarnings("resource")
 	public static Channel fileToChannel(String filePath) throws FileNotFoundException {
 		

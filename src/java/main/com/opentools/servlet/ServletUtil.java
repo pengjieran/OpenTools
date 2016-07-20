@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.opentools.charset.CharSetUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.entity.ContentType;
-
-import com.opentools.charset.CharsetUtil;
 
 /**
  * 处理http请求相关的工具类
@@ -56,7 +55,7 @@ public class ServletUtil {
 				}
 			}
 			
-			response.setContentType(ContentType.create(ContentType.APPLICATION_JSON.getMimeType(), Charset.forName(CharsetUtil.UTF_8)).getMimeType());
+			response.setContentType(ContentType.create(ContentType.APPLICATION_JSON.getMimeType(), Charset.forName(CharSetUtil.UTF_8)).getMimeType());
 			String s = new String("{\"key\":\"value\"}");
 			ServletOutputStream outputStream = response.getOutputStream();
 			IOUtils.write(s.getBytes("UTF-8"), outputStream);

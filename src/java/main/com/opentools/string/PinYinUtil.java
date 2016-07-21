@@ -28,5 +28,29 @@ public class PinYinUtil {
         }
     }
 
+    public static String toPinYin(String src, HanyuPinyinOutputFormat format) throws Exception {
+
+        try {
+            String s = PinyinHelper.toHanYuPinyinString(src, format, "", true);
+            return s;
+        } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
+            throw new Exception("无法转换拼音");
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        try {
+            String pinYin = toPinYin("哈哈哈", format);
+            System.out.println(pinYin);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private PinYinUtil(){}
 }

@@ -28,23 +28,23 @@ public class PinYinUtil {
         }
     }
 
-    public static String toPinYin(String src, HanyuPinyinOutputFormat format) throws Exception {
+    public static String toPinYin(String src, String separate, HanyuPinyinOutputFormat format) throws Exception {
 
         try {
-            String s = PinyinHelper.toHanYuPinyinString(src, format, "", true);
+            String s = PinyinHelper.toHanYuPinyinString(src, format, separate, true);
             return s;
         } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
             throw new Exception("无法转换拼音");
         }
-
     }
 
     public static void main(String[] args) {
 
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        format.setVCharType(HanyuPinyinVCharType.WITH_V);
         try {
-            String pinYin = toPinYin("哈哈哈", format);
+            String pinYin = toPinYin("哈哈哈dgfgdf","", format);
             System.out.println(pinYin);
         } catch (Exception e) {
             e.printStackTrace();

@@ -49,7 +49,6 @@ public class PinYinUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private PinYinUtil(){}

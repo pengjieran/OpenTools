@@ -36,7 +36,7 @@ public interface ContentType {
     String tar = "application/x-tar";
     String zip = "application/zip";
     String exe = "application/x-msdownload";
-    String json = "application/json";
+    String json = "application/json;charset=UTF-8";
 
     String img = "application/x-img";
     String bmp = "image/bmp";

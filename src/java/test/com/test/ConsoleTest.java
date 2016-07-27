@@ -38,6 +38,7 @@ public class ConsoleTest {
 	@Test
 	public void main() {
 
+		System.out.print("");
 	}
 
 }

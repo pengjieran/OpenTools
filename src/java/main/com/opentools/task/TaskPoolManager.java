@@ -21,9 +21,7 @@ public class TaskPoolManager {
 	/**构造一个单例的线程池**/
 	private static TaskPoolManager tpm = new TaskPoolManager();
 	
-    private TaskPoolManager() {
-    	
-    }
+    private TaskPoolManager() {}
     
 	public static TaskPoolManager newInstance() { 
 		return tpm;

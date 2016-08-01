@@ -108,6 +108,28 @@ public class CollectionUtil {
     }
 
     /**
+     * 判断map是否为空
+     * @param map
+     * @return
+     */
+    public static boolean isEmpty(Map<?, ?> map) {
+
+        if (null == map || map.isEmpty() || map.size() <= 0) return true;
+        return false;
+    }
+
+    /**
+     * 判断map是否不为空
+     * @param map
+     * @return
+     */
+    public static boolean isNotEmpty(Map<?, ?> map) {
+
+        if (null != map && map.size() > 0) return true;
+        return false;
+    }
+
+    /**
      * 检查集合是否不为空
      *
      * @param collection

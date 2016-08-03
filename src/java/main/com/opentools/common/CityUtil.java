@@ -51,10 +51,4 @@ public class CityUtil {
         }
         return stringBuilder.toString();
     }
-
-    public static void main(String[] args) {
-
-        getAreas();
-
-    }
 }

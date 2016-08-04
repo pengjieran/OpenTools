@@ -259,7 +259,7 @@ public class HttpUtils {
      * @param params
      * @return
      */
-    public static List<String> Post(String url, Map<String, String> headers, Map<String, String> params) {
+    public static String Post(String url, Map<String, String> headers, Map<String, String> params) {
 		
 		try {
 			
@@ -312,12 +312,11 @@ public class HttpUtils {
 			connection.connect();
 			
 			InputStream stream = connection.getInputStream();
-			
-			List<String> lines = IOUtils.readLines(stream);
-			
-			stream.close();
-			
-			return lines;
+
+            String s = IOUtils.toString(stream);
+
+            stream.close();
+            return s;
 		} catch (IOException e) {
 			
 			e.printStackTrace();

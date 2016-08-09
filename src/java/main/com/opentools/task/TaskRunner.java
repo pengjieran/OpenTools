@@ -32,7 +32,7 @@ public class TaskRunner implements Runnable{
 			Method method = className.getMethod(classMethod, Map.class);
 	        method.invoke(className.newInstance(),task.getTaskParam());
 		}catch (Exception e) {
-			System.out.println("出错了：" + e.getMessage());
+			System.out.println("错误信息：" + e.getMessage());
 		}
 	}
 

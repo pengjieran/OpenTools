@@ -19,8 +19,7 @@ public class TextImageUtilsTest {
 			
 			e.printStackTrace();
 		} catch (IOException e) {
-			
-			e.printStackTrace();
+
 		}
 	}
 

@@ -15,11 +15,9 @@ public class TextImageUtilsTest {
 		try {
 			//TextImageUtils.makeImage("123456789", new FileOutputStream(new File("aaa.png")), Font.BOLD);
 			TextImageUtils.makeImage("pjr0206@163.com", new FileOutputStream(new File("4521.png")), Font.PLAIN);
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			
 			e.printStackTrace();
-		} catch (IOException e) {
-
 		}
 	}
 

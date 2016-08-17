@@ -14,8 +14,6 @@ public class SwapPositionTest {
 		
 		SwapPosition.swap1(a, b);
 
-		SwapPosition.swap2(a,b);
-
 	}
 
 }

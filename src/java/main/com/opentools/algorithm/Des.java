@@ -4,7 +4,7 @@ package com.opentools.algorithm;
  * @author Dean
  */
 
-import com.opentools.web.StringUtil;
+import com.opentools.string.StringUtil;
 
 import javax.crypto.Cipher;
 import java.security.Key;

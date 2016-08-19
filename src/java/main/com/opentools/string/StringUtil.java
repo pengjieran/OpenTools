@@ -1,4 +1,4 @@
-package com.opentools.web;
+package com.opentools.string;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -646,6 +648,19 @@ public class StringUtil {
 		}
 
 		return (stringBuffer.toString());
+	}
+
+	/**
+	 * 过滤字符串中的特殊字符
+	 * @param src
+	 * @return
+     */
+	public static String filter(String src) {
+
+		String regEx="()（）[`~!@#$%^&*+=|{}':;',\\[\\].<>/?~！@#￥%……&*——+|{}【】‘；：”“’。，、？]";
+		Pattern p = Pattern.compile(regEx);
+		Matcher m = p.matcher(src);
+		return m.replaceAll("").trim();
 	}
 
 	/**

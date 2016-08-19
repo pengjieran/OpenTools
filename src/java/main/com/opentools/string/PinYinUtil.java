@@ -12,6 +12,12 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  */
 public class PinYinUtil {
 
+    /**
+     * 将汉字转换为全大写拼音
+     * @param src
+     * @return
+     * @throws Exception
+     */
     public static String toPinYinUpperCase(String src) throws Exception {
 
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
@@ -28,6 +34,14 @@ public class PinYinUtil {
         }
     }
 
+    /**
+     * 将汉字转换为拼音
+     * @param src
+     * @param separate
+     * @param format
+     * @return
+     * @throws Exception
+     */
     public static String toPinYin(String src, String separate, HanyuPinyinOutputFormat format) throws Exception {
 
         try {
@@ -38,17 +52,35 @@ public class PinYinUtil {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     *将汉字转换为拼音首字母大写，只保留首字母
+     * @param src
+     * @return
+     * @throws Exception
+     */
+    public static String getFirstSpell(String src) throws Exception {
 
-        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        format.setVCharType(HanyuPinyinVCharType.WITH_V);
-        try {
-            String pinYin = toPinYin("哈哈哈dgfgdf","", format);
-            System.out.println(pinYin);
-        } catch (Exception e) {
-            e.printStackTrace();
+        StringBuilder strBuilder = new StringBuilder();
+        char[] arr = src.toCharArray();
+        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+        defaultFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);
+        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 128) {
+                try {
+                    String[] temp = PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat);
+                    if (temp != null) {
+                        strBuilder.append(temp[0].charAt(0));
+                    }
+                } catch (BadHanyuPinyinOutputFormatCombination e) {
+                    e.printStackTrace();
+                    throw new BadHanyuPinyinOutputFormatCombination("无法转换拼音");
+                }
+            } else {
+                strBuilder.append(arr[i]);
+            }
         }
+        return strBuilder.toString().replaceAll("\\W", "").trim();
     }
 
     private PinYinUtil(){}

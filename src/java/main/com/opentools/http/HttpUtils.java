@@ -1,4 +1,4 @@
-package com.opentools.web;
+package com.opentools.http;
 
 import com.opentools.charset.CharSetUtil;
 import org.apache.commons.io.IOUtils;

@@ -1,8 +1,12 @@
 package com.opentools.file;
 
+import com.opentools.collection.CollectionUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * Created by aaron on 2016/9/23.
@@ -68,8 +72,31 @@ public class PropertyUtil {
 
         Properties properties = new Properties();
         properties.load(inputStream);
-
+        inputStream.close();
         return properties;
+    }
+
+    /**
+     * 写配置文件数据
+     * @param map
+     * @param filePath
+     */
+    public static void writeProperties(Map<String, String> map, String filePath) throws IOException {
+
+        InputStream inputStream = ClassLoader.getSystemResourceAsStream(filePath);
+
+        Properties properties = new Properties();
+        properties.load(inputStream);
+
+        if (CollectionUtil.isNotEmpty(map)) {
+
+            Set<String> keySet = map.keySet();
+            for (String key : keySet) {
+
+                properties.setProperty(key, map.get(key));
+            }
+        }
+        inputStream.close();
     }
 
     public static void main(String[] args) {

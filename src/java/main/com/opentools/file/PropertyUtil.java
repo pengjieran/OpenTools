@@ -2,8 +2,11 @@ package com.opentools.file;
 
 import com.opentools.collection.CollectionUtil;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -83,8 +86,12 @@ public class PropertyUtil {
      */
     public static void writeProperties(Map<String, String> map, String filePath) throws IOException {
 
-        InputStream inputStream = ClassLoader.getSystemResourceAsStream(filePath);
 
+        URL resource = ClassLoader.getSystemResource(filePath);
+        System.out.println(resource.getPath());
+        FileOutputStream fos = new FileOutputStream(resource.getPath());
+
+        InputStream inputStream = new FileInputStream(resource.getPath());
         Properties properties = new Properties();
         properties.load(inputStream);
 
@@ -94,19 +101,13 @@ public class PropertyUtil {
             for (String key : keySet) {
 
                 properties.setProperty(key, map.get(key));
+                properties.store(fos, "新增属性");
             }
         }
+
+        fos.flush();
+        fos.close();
         inputStream.close();
-    }
-
-    public static void main(String[] args) {
-
-        try {
-            Properties properties = loadProperties("common.properties");
-            System.out.println(properties.getProperty("key"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private PropertyUtil() {}

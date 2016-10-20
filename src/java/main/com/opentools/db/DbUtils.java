@@ -108,7 +108,7 @@ public class DbUtils {
 
             case DBTYPE_ORACLE:
 
-                url = "";
+                url = "jdbc:oracle:thin:@" + dbIp + ":" + dbPort + ":" + dbName;
                 break;
             default:
                 break;

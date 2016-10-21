@@ -105,7 +105,6 @@ public class DbUtils {
 
                 url = "jdbc:mysql://" + dbIp + ":" + dbPort + "/" + dbName + "";
                 break;
-
             case DBTYPE_ORACLE:
 
                 url = "jdbc:oracle:thin:@" + dbIp + ":" + dbPort + ":" + dbName;

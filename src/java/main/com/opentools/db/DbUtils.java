@@ -109,6 +109,11 @@ public class DbUtils {
 
                 url = "jdbc:oracle:thin:@" + dbIp + ":" + dbPort + ":" + dbName;
                 break;
+
+            case DBTYPE_POSTGRESQL:
+
+                url = "";
+                break;
             default:
                 break;
         }

@@ -112,7 +112,7 @@ public class DbUtils {
 
             case DBTYPE_POSTGRESQL:
 
-                url = "";
+                url = "jdbc:postgresql://" + dbIp + ":" + dbPort + "/" + dbName;
                 break;
             default:
                 break;

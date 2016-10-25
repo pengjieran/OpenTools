@@ -18,6 +18,7 @@ public class TicketUtil {
 	
 	/**
 	 * 获取城市对应的拼音简写
+	 * 运行之前先要确定jdk的ca库里已经导入了12306的CA证书
 	 * @auther aaron
 	 * 
 	 * @return

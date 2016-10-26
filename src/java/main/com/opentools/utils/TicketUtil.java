@@ -2,7 +2,6 @@ package com.opentools.utils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -26,7 +25,6 @@ public class TicketUtil {
 	public static Map<String, String> getCity() {
 		
 		String s = HttpUtils.sendGet("https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8971", null);
-		System.out.println(s);
 		//获取数据
 		String[] strings = s.split("=");
 		String str = strings[1];
@@ -45,20 +43,28 @@ public class TicketUtil {
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @auther aaron
+	 * 
+	 * @param startStation
+	 * @param endStation
+	 * @param time
+	 * @return
+	 */
+	public static String search(String startStation, String endStation, String time) {
+		
+		Map<String, String> city = getCity();
+		String startKey = city.get(startStation);
+		String endKey = city.get(endStation);
+		System.out.println(startKey + "===" + endKey + "===" + time);
+		return null;
+	}
+	
 	@Test
 	public void Test() {
 		
-		Map<String, String> city = getCity();
-		
-		Set<String> set = city.keySet();
-		System.out.println(set.size());
-		for (String key : set) {
-			
-			System.out.println(key + "========" + city.get(key));
-		}
-		
-		String string = city.get("信阳");
-		System.out.println(string);
+		search("信阳", "北京", "2016-10-30");
 	}
 
 }

@@ -25,7 +25,8 @@ public class TicketUtil {
 	 */
 	public static Map<String, String> getCity() {
 		
-		String s = HttpUtils.sendGet("https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8968", null);
+		String s = HttpUtils.sendGet("https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8971", null);
+		System.out.println(s);
 		//获取数据
 		String[] strings = s.split("=");
 		String str = strings[1];
@@ -38,7 +39,7 @@ public class TicketUtil {
 			if (StringUtil.isNotEmpty(st)) {
 				
 				String[] strings2 = StringUtils.split(st, "|");
-				result.put(strings2[1], strings2[0]);
+				result.put(strings2[1], strings2[2]);
 			}
 		}
 		return result;

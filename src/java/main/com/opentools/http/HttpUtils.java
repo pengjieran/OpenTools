@@ -31,8 +31,10 @@ import javax.net.ssl.SSLSocket;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.fluent.Request;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -50,6 +52,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
 import com.opentools.charset.CharSetUtil;
+import com.opentools.collection.CollectionUtil;
 
 /**
  * HTTP POST和GET处理工具类
@@ -128,6 +131,34 @@ public class HttpUtils {
 			}
 		}
 		return result;
+	}
+	
+	public static HttpResponse sendGet(String url, Map<String, String> params, Map<String, String> headers) throws ClientProtocolException, IOException {
+		/*
+		Form form = Form.form();
+		if (CollectionUtil.isNotEmpty(params)) {
+			
+			for (String key : params.keySet()) {
+				
+				form.add(key, params.get(key));
+			}
+		}
+		
+		List<NameValuePair> paramList = form.build();
+		*/
+		String parseParams = parseParams(params);
+		
+		Request request = Request.Get(url + "?" + parseParams);
+		if (CollectionUtil.isNotEmpty(headers)) {
+			
+			for (String key : headers.keySet()) {
+				
+				request.addHeader(key, headers.get(key));
+			}
+		}
+		
+		return request.execute().returnResponse();
+		
 	}
 
 	/**
@@ -559,7 +590,8 @@ public class HttpUtils {
 	 * @param map
 	 * @return
 	 */
-	private static String parseParams(HashMap<String, String> map) {
+	private static String parseParams(Map<String, String> map) {
+		
 		StringBuffer sb = new StringBuffer();
 		if (map != null) {
 			for (Entry<String, String> e : map.entrySet()) {

@@ -1,9 +1,14 @@
 package com.opentools.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
 import com.opentools.common.StringUtil;
@@ -52,19 +57,56 @@ public class TicketUtil {
 	 * @param time
 	 * @return
 	 */
-	public static String search(String startStation, String endStation, String time) {
+	public static HttpResponse search(String startStation, String endStation, String time) {
 		
 		Map<String, String> city = getCity();
 		String startKey = city.get(startStation);
 		String endKey = city.get(endStation);
-		System.out.println(startKey + "===" + endKey + "===" + time);
-		return null;
+		
+		String logUrl = "https://kyfw.12306.cn/otn/leftTicket/log";
+		String url = "https://kyfw.12306.cn/otn/leftTicket/queryX";
+		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("leftTicketDTO.train_date", time);
+		params.put("leftTicketDTO.from_station", startKey);
+		params.put("leftTicketDTO.to_station", endKey);
+		params.put("purpose_codes", "ADULT");
+		
+		Map<String, String> headers = new HashMap<>();
+		headers.put("t", "6c602f1ec3dcab1658b4c7acad87bbc5");
+		headers.put("Referer", "https://kyfw.12306.cn/otn/leftTicket/init");
+		try {
+			
+			HttpUtils.sendGet(logUrl, params, headers);
+			HttpResponse result = HttpUtils.sendGet(url, params, headers);
+			return result;
+		} catch (ClientProtocolException e) {
+			
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@Test
 	public void Test() {
 		
-		search("信阳", "北京", "2016-10-30");
+		HttpResponse response = search("信阳", "北京", "2016-10-30");
+		try {
+			
+			InputStream stream = response.getEntity().getContent();
+			String string = IOUtils.toString(stream);
+			System.out.println(string);
+		} catch (UnsupportedOperationException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 }

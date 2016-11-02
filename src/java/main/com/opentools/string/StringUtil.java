@@ -36,36 +36,6 @@ public class StringUtil {
 	}
 
 	/**
-	 * 编码转换iso8859-1 --> utf-8
-	 * 
-	 * @param sor
-	 * @return
-	 */
-	public static String changeEncode(String sor) {
-		try {
-			return new String(sor.getBytes("iso8859-1"), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return sor;
-	}
-
-	/**
-	 * 编码转换iso8859-1 <-- gb2312
-	 * 
-	 * @param sor
-	 * @return
-	 */
-	public static String changeEncode2(String sor) {
-		try {
-			return new String(sor.getBytes("gb2312"), "iso8859-1");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return sor;
-	}
-
-	/**
 	 * 分割字符串(忽略指定区块内的内容)
 	 * 如input("foo,bar,c;qual=\"baz,blurb\",d;junk=\"quux,syzygy\"", ",",
 	 * "\\\"", , "\\\"")

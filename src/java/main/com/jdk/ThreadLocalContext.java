@@ -8,7 +8,7 @@ import java.util.Map;
  * @author aaron
  *
  */
-public class ThreadLocalContext {
+public final class ThreadLocalContext {
 	
 	private static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<Map<String, Object>>() {
 		
@@ -17,7 +17,6 @@ public class ThreadLocalContext {
 			
 			return new HashMap<String, Object>();
 		}
-		
 	};
 
 	public static void put(String key, Object value) {

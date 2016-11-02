@@ -49,6 +49,11 @@ public class CharSetUtil
     public static final String GBK = "GBK";
     
     /**
+     * windows常用的字符集
+     */
+    public static final String GB2312 = "GB2312";
+    
+    /**
      * 将默认的编码方式转换为目标编码方式
      * @param srcStr
      * @param newCharSet

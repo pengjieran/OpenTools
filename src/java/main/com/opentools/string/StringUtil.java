@@ -1,7 +1,5 @@
 package com.opentools.string;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -10,6 +8,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.text.WordUtils;
 
 /**
  * the string tools
@@ -31,8 +30,7 @@ public class StringUtil {
 			result = result.replace(String.valueOf(c), "");
 		}
 		int len = result.length();
-		result = result.substring(0, 1).toLowerCase()
-				+ result.substring(1, len);
+		result = result.substring(0, 1).toLowerCase() + result.substring(1, len);
 
 		return result;
 	}
@@ -84,8 +82,8 @@ public class StringUtil {
 	 * 
 	 * @return String[]
 	 */
-	public static String[] split(String str, String splitter,
-			String ignoreBlockLeftDelimiter, String ignoreBlockRightDelimiter) {
+	public static String[] split(String str, String splitter, String ignoreBlockLeftDelimiter,
+			String ignoreBlockRightDelimiter) {
 
 		// String regEx = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
 		// String regEx = splitter + "(?=([^" + ignoreBlockLeftDelimiter + "]*"
@@ -216,6 +214,7 @@ public class StringUtil {
 
 	/**
 	 * 将字符串转换为二进制
+	 * 
 	 * @param str
 	 * @return
 	 */
@@ -230,8 +229,7 @@ public class StringUtil {
 		byte[] b = new byte[len / 2];
 		try {
 			for (int i = 0; i < str.length(); i += 2) {
-				b[i / 2] = (byte) Integer
-						.decode("0X" + str.substring(i, i + 2)).intValue();
+				b[i / 2] = (byte) Integer.decode("0X" + str.substring(i, i + 2)).intValue();
 			}
 			return b;
 		} catch (Exception e) {
@@ -298,8 +296,7 @@ public class StringUtil {
 	public static String removeHtml(String origine) {
 		String outStr = null;
 		if (origine != null) {
-			outStr = origine.replaceAll("<[^<^>]*>|&nbsp;", "").replaceAll(" ",
-					"");
+			outStr = origine.replaceAll("<[^<^>]*>|&nbsp;", "").replaceAll(" ", "");
 		} else {
 			outStr = "";
 		}
@@ -358,16 +355,29 @@ public class StringUtil {
 	}
 
 	/**
-	 * Determine whether a (trimmed) string is empty
+	 * 检查字符串是否是空的
+	 * @auther aaron
 	 * 
 	 * @param foo
-	 *            The text to check.
-	 * @return Whether empty.
+	 * @return
 	 */
 	public static final boolean isEmpty(String foo) {
+		
 		return (foo == null || foo.trim().length() == 0);
 	}
 
+	/**
+	 * 检查字符串是否不为空
+	 * @auther aaron
+	 * 
+	 * @param src
+	 * @return
+	 */
+	public static final boolean isNotEmpty(String src) {
+		
+		return !isEmpty(src);
+	}
+	
 	/**
 	 * convert the ISO char encoding to GBK
 	 * 
@@ -461,8 +471,7 @@ public class StringUtil {
 		return strBuf.toString();
 	}
 
-	public static String convertURIToURLInHTML(String html, String pattern,
-			String domain) {
+	public static String convertURIToURLInHTML(String html, String pattern, String domain) {
 		if (html == null)
 			return "";
 		String http = "http://";
@@ -547,7 +556,7 @@ public class StringUtil {
 	 *            a boolean to add HTML
 	 * 
 	 *            <pre>
-	 *  tags around the stacktrace
+	 *            tags around the stacktrace
 	 * @return A String.
 	 * 
 	 */
@@ -625,10 +634,9 @@ public class StringUtil {
 	 *            The column to wrap the words at.
 	 * @return The text with all the long lines word-wrapped.
 	 */
-	public static String wrapText(String inString, String newline,
-			int wrapColumn) {
-		StringTokenizer lineTokenizer = new StringTokenizer(inString, newline,
-				true);
+	public static String wrapText(String inString, String newline, int wrapColumn) {
+		
+		StringTokenizer lineTokenizer = new StringTokenizer(inString, newline, true);
 		StringBuffer stringBuffer = new StringBuffer();
 
 		while (lineTokenizer.hasMoreTokens()) {
@@ -652,12 +660,13 @@ public class StringUtil {
 
 	/**
 	 * 过滤字符串中的特殊字符
+	 * 
 	 * @param src
 	 * @return
-     */
+	 */
 	public static String filter(String src) {
 
-		String regEx="()（）[`~!@#$%^&*+=|{}':;',\\[\\].<>/?~！@#￥%……&*——+|{}【】‘；：”“’。，、？]";
+		String regEx = "()（）[`~!@#$%^&*+=|{}':;',\\[\\].<>/?~！@#￥%……&*——+|{}【】‘；：”“’。，、？]";
 		Pattern p = Pattern.compile(regEx);
 		Matcher m = p.matcher(src);
 		return m.replaceAll("").trim();

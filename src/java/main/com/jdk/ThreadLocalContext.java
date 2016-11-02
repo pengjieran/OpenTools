@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class ThreadLocalContext {
 	
-	private static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<Map<String, Object>>(){
+	private static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<Map<String, Object>>() {
 		
 		@Override
 		protected Map<String, Object> initialValue() {

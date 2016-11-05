@@ -1,6 +1,7 @@
 package com.opentools.common;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * 随机生成工具类
@@ -39,5 +40,15 @@ public class RandomUtil {
         }
 
         return nameBuilder.toString();
+    }
+
+    public static Long getUUID() {
+
+        return UUID.randomUUID().getMostSignificantBits();
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(getUUID());
     }
 }

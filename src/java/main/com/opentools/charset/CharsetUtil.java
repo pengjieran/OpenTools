@@ -10,10 +10,9 @@ import java.nio.charset.Charset;
  * @author Aaron
  * @since 2015年6月15日
  */
-public class CharSetUtil
-{
-	
-	/**
+public class CharSetUtil {
+
+    /**
      * 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块
      */
     public static final String US_ASCII = "US-ASCII";
@@ -62,7 +61,7 @@ public class CharSetUtil
      */
     public static String changeCharSet(String srcStr, String newCharSet) throws UnsupportedEncodingException
     {
-    	if (null != srcStr)
+        if (null != srcStr)
     	{
     		byte[] bs = srcStr.getBytes();
     		return new String(bs, newCharSet);

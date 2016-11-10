@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.opentools.collection.CollectionUtil;
+
 /**
  * 输出相关的工具类，主要用于各种格式的数据输出
  * @author aaron
@@ -38,6 +40,29 @@ public class PrintUtil {
 		strBuilder.append("}");
 		
 		return strBuilder;
+	}
+	
+	/**
+	 * 输出listshuju
+	 * @auther aaron
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public static StringBuffer printList(List<String> list) {
+		
+		StringBuffer strBuffer = new StringBuffer();
+		if (CollectionUtil.isNotEmpty(list)) {
+			
+			for (String str : list) {
+				
+				strBuffer.append(str);
+				if (!str.equals(list.get(list.size() - 1))) {
+					strBuffer.append(",");
+				}
+			}
+		}
+		return strBuffer;
 	}
 
 }

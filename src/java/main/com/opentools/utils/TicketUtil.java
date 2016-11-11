@@ -1,18 +1,15 @@
 package com.opentools.utils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.io.IOUtils;
+import com.opentools.common.StringUtil;
+import com.opentools.http.HttpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
-import com.opentools.common.StringUtil;
-import com.opentools.http.HttpUtils;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 查询火车票信息的工具类
@@ -95,18 +92,6 @@ public class TicketUtil {
 	public void Test() {
 		
 		HttpResponse response = search("信阳", "北京", "2016-10-30");
-		try {
-			
-			InputStream stream = response.getEntity().getContent();
-			String string = IOUtils.toString(stream);
-			System.out.println(string);
-		} catch (UnsupportedOperationException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.opentools.algorithm;
 
 /**
- * @author Dean
+ * @author Aaron
  */
 
 import com.opentools.string.StringUtil;
@@ -11,7 +11,7 @@ import java.security.Key;
 
 public final class Des {
 
-	private static final String strDefaultKey = "dean";
+	private static final String strDefaultKey = "aaron";
 
 	private Cipher encryptCipher = null;
 

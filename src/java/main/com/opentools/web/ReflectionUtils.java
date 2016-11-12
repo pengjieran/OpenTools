@@ -1,5 +1,10 @@
 package com.opentools.web;
 
+import ognl.Ognl;
+import ognl.OgnlException;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
@@ -7,12 +12,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import ognl.Ognl;
-import ognl.OgnlException;
 
 /**
  * 通过反射的方式操作对象中的属性,无视访问修饰符，不经过getter/setter方法
@@ -168,7 +167,7 @@ public final class ReflectionUtils {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static List fetchElementPropertyToList(final Collection collection, final String propertyName) throws Exception {
 
-		List list = new ArrayList();
+		List<Object> list = new ArrayList<Object>();
 
 		for (Object obj : collection) {
 			

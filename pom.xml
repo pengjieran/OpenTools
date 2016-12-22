@@ -19,31 +19,33 @@
 
 	<properties>
 		<commons-lang3.version>3.4</commons-lang3.version>
+		<commons-io.version>2.4</commons-io.version>
 		<zxing.version>3.2.1</zxing.version>
 		<javax.mail.version>1.5.5</javax.mail.version>
 		<libphone.version>7.2.6</libphone.version>
+		<spring.version>4.3.3.RELEASE</spring.version>
+		<junit.version>4.12</junit.version>
+		<jna.version>4.2.1</jna.version>
+		<jackson.version>2.7.2</jackson.version>
+		<httpclient.version>4.5.2</httpclient.version>
+		<javaee.version>7.0</javaee.version>
+		<activation.version>1.1.1</activation.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<commons-logging.version>1.2</commons-logging.version>
+		<ognl.version>3.1.2</ognl.version>
+		<commons-math3.version>3.6.1</commons-math3.version>
+		<jedis.version>2.4.2</jedis.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
+		<joda-time.version>2.9.4</joda-time.version>
 	</properties>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>
-		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. <repository> <id>nexus-repos</id> <name>Team 
-			Nexus Repository</name> <url>http://192.168.11.36:8888/nexus/content/groups/public</url> 
-			</repository> -->
-
-		<!-- <repository> <id>oschina-repos</id> <name>Oschina Releases</name> 
-			<url>http://maven.oschina.net/content/groups/public</url> </repository> <repository> 
-			<id>java-repos</id> <name>Java Repository</name> <url>http://download.java.net/maven/2/</url> 
-			</repository> <repository> <id>springsource-repos</id> <name>SpringSource 
-			Repository</name> <url>http://repo.spring.io/release/</url> </repository> 
-			<repository> <id>central-repos</id> <name>Central Repository</name> <url>http://repo.maven.apache.org/maven2</url> 
-			</repository> <repository> <id>central-repos2</id> <name>Central Repository 
-			2</name> <url>http://repo1.maven.org/maven2/</url> </repository> <repository> 
-			<id>activiti-repos</id> <name>Activiti Repository</name> <url>https://maven.alfresco.com/nexus/content/groups/public</url> 
-			</repository> <repository> <id>activiti-repos2</id> <name>Activiti Repository 
-			2</name> <url>https://app.camunda.com/nexus/content/groups/public</url> </repository> 
-			<repository> <id>thinkgem-repos</id> <name>ThinkGem Repository</name> <url>http://git.oschina.net/thinkgem/repos/raw/master</url> 
-			</repository> <repository> <id>thinkgem-repos2</id> <name>ThinkGem Repository 
-			2</name> <url>https://raw.github.com/thinkgem/repository/master</url> </repository> -->
-
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -70,47 +72,47 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.java.dev.jna</groupId>
 			<artifactId>jna</artifactId>
-			<version>4.2.1</version>
+			<version>${jna.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.7.2</version>
+			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>fluent-hc</artifactId>
-			<version>4.5.2</version>
+			<version>${httpclient.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
+			<version>${javaee.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
-			<version>1.1.1</version>
+			<version>${activation.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
+			<version>${commons-beanutils.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.10</version>
+			<version>${commons-codec.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
+			<version>${commons-io.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -120,47 +122,47 @@
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
+			<version>${commons-logging.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<version>${httpclient.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>ognl</groupId>
 			<artifactId>ognl</artifactId>
-			<version>3.1.2</version>
+			<version>${ognl.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
-			<version>4.5.2</version>
+			<version>${httpclient.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-math3</artifactId>
-			<version>3.6.1</version>
+			<version>${commons-math3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>2.4.2</version>
+			<version>${jedis.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.3.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.belerweb</groupId>
 			<artifactId>pinyin4j</artifactId>
-			<version>2.5.1</version>
+			<version>${pinyin4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>2.9.4</version>
+			<version>${joda-time.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

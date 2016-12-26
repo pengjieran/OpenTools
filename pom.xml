@@ -19,7 +19,7 @@
 
 	<properties>
 		<commons-lang3.version>3.4</commons-lang3.version>
-		<commons-io.version>2.4</commons-io.version>
+		<commons-io.version>2.5</commons-io.version>
 		<zxing.version>3.2.1</zxing.version>
 		<javax.mail.version>1.5.5</javax.mail.version>
 		<libphone.version>7.2.6</libphone.version>

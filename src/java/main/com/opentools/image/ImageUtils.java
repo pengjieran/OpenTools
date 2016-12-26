@@ -1,23 +1,30 @@
 package com.opentools.image;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
+import java.awt.color.ColorSpace;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.awt.image.*;
+import java.io.*;
+import java.net.URL;
+import java.util.Iterator;
 
 /**
- *
  * @author Aaron
  * @date 2016年12月20日 下午7:14:31
  * @classname ImageUtil.java
  */
-public class ImageUtil {
+public class ImageUtils {
 
     public static String IMAGE_TYPE_GIF = "gif";// 图形交换格式
     public static String IMAGE_TYPE_JPG = "jpg";// 联合照片专家组
@@ -350,8 +357,7 @@ public class ImageUtil {
     /**
      * 获取图片尺寸信息
      *
-     * @param filePath
-     *            a {@link java.lang.String} object.
+     * @param filePath a {@link java.lang.String} object.
      * @return [width, height]
      */
     public static int[] getSizeInfo(String filePath) throws Exception {
@@ -362,9 +368,8 @@ public class ImageUtil {
     /**
      * 获取图片尺寸信息
      *
-     * @param url
-     *            a {@link java.net.URL} object.
-     * @return [width,height]
+     * @param url a {@link java.net.URL} object.
+     * @return [width, height]
      */
     public static int[] getSizeInfo(URL url) throws Exception {
         InputStream input = null;
@@ -382,9 +387,8 @@ public class ImageUtil {
     /**
      * 获取图片尺寸信息
      *
-     * @param file
-     *            a {@link java.io.File} object.
-     * @return [width,height]
+     * @param file a {@link java.io.File} object.
+     * @return [width, height]
      */
     public static int[] getSizeInfo(File file) throws Exception {
         if (!file.exists()) {
@@ -405,16 +409,15 @@ public class ImageUtil {
     /**
      * 获取图片尺寸
      *
-     * @param input
-     *            a {@link java.io.InputStream} object.
-     * @return [width,height]
+     * @param input a {@link java.io.InputStream} object.
+     * @return [width, height]
      */
     public static int[] getSizeInfo(InputStream input) throws Exception {
         try {
             BufferedImage img = ImageIO.read(input);
             int w = img.getWidth(null);
             int h = img.getHeight(null);
-            return new int[] { w, h };
+            return new int[]{w, h};
         } catch (IOException e) {
             e.printStackTrace();
             throw new Exception(e);
@@ -424,14 +427,10 @@ public class ImageUtil {
     /**
      * 重调图片尺寸
      *
-     * @param srcFilePath
-     *            原图路径
-     * @param destFile
-     *            目标文件
-     * @param width
-     *            新的宽度，小于1则忽略，按原图比例缩放
-     * @param height
-     *            新的高度，小于1则忽略，按原图比例缩放
+     * @param srcFilePath 原图路径
+     * @param destFile    目标文件
+     * @param width       新的宽度，小于1则忽略，按原图比例缩放
+     * @param height      新的高度，小于1则忽略，按原图比例缩放
      */
     public static void resize(String srcFilePath, String destFile, int width, int height) throws Exception {
         resize(srcFilePath, destFile, width, height, -1, -1);
@@ -440,14 +439,10 @@ public class ImageUtil {
     /**
      * 重调图片尺寸
      *
-     * @param input
-     *            a {@link java.io.InputStream} object.
-     * @param output
-     *            a {@link java.io.OutputStream} object.
-     * @param width
-     *            a int.
-     * @param height
-     *            a int.
+     * @param input  a {@link java.io.InputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @param width  a int.
+     * @param height a int.
      */
     public static void resize(InputStream input, OutputStream output, int width, int height) throws Exception {
         resize(input, output, width, height, -1, -1);
@@ -456,18 +451,12 @@ public class ImageUtil {
     /**
      * 重调图片尺寸
      *
-     * @param input
-     *            a {@link java.io.InputStream} object.
-     * @param output
-     *            a {@link java.io.OutputStream} object.
-     * @param width
-     *            a int.
-     * @param height
-     *            a int.
-     * @param maxWidth
-     *            a int.
-     * @param maxHeight
-     *            a int.
+     * @param input     a {@link java.io.InputStream} object.
+     * @param output    a {@link java.io.OutputStream} object.
+     * @param width     a int.
+     * @param height    a int.
+     * @param maxWidth  a int.
+     * @param maxHeight a int.
      */
     public static void resize(InputStream input, OutputStream output, int width, int height, int maxWidth,
                               int maxHeight) throws Exception {
@@ -531,18 +520,12 @@ public class ImageUtil {
     /**
      * 重调图片尺寸
      *
-     * @param srcFile
-     *            原图路径
-     * @param destFile
-     *            目标文件
-     * @param width
-     *            新的宽度，小于1则忽略，按原图比例缩放
-     * @param height
-     *            新的高度，小于1则忽略，按原图比例缩放
-     * @param maxWidth
-     *            最大宽度，限制目标图片宽度，小于1则忽略此设置
-     * @param maxHeight
-     *            最大高度，限制目标图片高度，小于1则忽略此设置
+     * @param srcFile   原图路径
+     * @param destFile  目标文件
+     * @param width     新的宽度，小于1则忽略，按原图比例缩放
+     * @param height    新的高度，小于1则忽略，按原图比例缩放
+     * @param maxWidth  最大宽度，限制目标图片宽度，小于1则忽略此设置
+     * @param maxHeight 最大高度，限制目标图片高度，小于1则忽略此设置
      */
     public static void resize(String srcFile, String destFile, int width, int height, int maxWidth, int maxHeight)
             throws Exception {
@@ -552,14 +535,10 @@ public class ImageUtil {
     /**
      * 重调图片尺寸
      *
-     * @param srcFile
-     *            原图路径
-     * @param destFile
-     *            目标文件
-     * @param width
-     *            新的宽度，小于1则忽略，按原图比例缩放
-     * @param height
-     *            新的高度，小于1则忽略，按原图比例缩放
+     * @param srcFile  原图路径
+     * @param destFile 目标文件
+     * @param width    新的宽度，小于1则忽略，按原图比例缩放
+     * @param height   新的高度，小于1则忽略，按原图比例缩放
      */
     public static void resize(File srcFile, File destFile, int width, int height) throws Exception {
         resize(srcFile, destFile, width, height, -1, -1);
@@ -568,18 +547,12 @@ public class ImageUtil {
     /**
      * 重调图片尺寸
      *
-     * @param srcFile
-     *            原图路径
-     * @param destFile
-     *            目标文件
-     * @param width
-     *            新的宽度，小于1则忽略，按原图比例缩放
-     * @param height
-     *            新的高度，小于1则忽略，按原图比例缩放
-     * @param maxWidth
-     *            最大宽度，限制目标图片宽度，小于1则忽略此设置
-     * @param maxHeight
-     *            最大高度，限制目标图片高度，小于1则忽略此设置
+     * @param srcFile   原图路径
+     * @param destFile  目标文件
+     * @param width     新的宽度，小于1则忽略，按原图比例缩放
+     * @param height    新的高度，小于1则忽略，按原图比例缩放
+     * @param maxWidth  最大宽度，限制目标图片宽度，小于1则忽略此设置
+     * @param maxHeight 最大高度，限制目标图片高度，小于1则忽略此设置
      */
     public static void resize(File srcFile, File destFile, int width, int height, int maxWidth, int maxHeight)
             throws Exception {
@@ -606,18 +579,12 @@ public class ImageUtil {
     /**
      * 裁剪图片
      *
-     * @param source
-     *            a {@link java.lang.String} object.
-     * @param target
-     *            a {@link java.lang.String} object.
-     * @param x
-     *            a int.
-     * @param y
-     *            a int.
-     * @param w
-     *            a int.
-     * @param h
-     *            a int.
+     * @param source a {@link java.lang.String} object.
+     * @param target a {@link java.lang.String} object.
+     * @param x      a int.
+     * @param y      a int.
+     * @param w      a int.
+     * @param h      a int.
      */
     public static void crop(String source, String target, int x, int y, int w, int h) throws Exception {
         crop(new File(source), new File(target), x, y, w, h);
@@ -626,18 +593,12 @@ public class ImageUtil {
     /**
      * 裁剪图片
      *
-     * @param source
-     *            a {@link java.io.File} object.
-     * @param target
-     *            a {@link java.io.File} object.
-     * @param x
-     *            a int.
-     * @param y
-     *            a int.
-     * @param w
-     *            a int.
-     * @param h
-     *            a int.
+     * @param source a {@link java.io.File} object.
+     * @param target a {@link java.io.File} object.
+     * @param x      a int.
+     * @param y      a int.
+     * @param w      a int.
+     * @param h      a int.
      */
     public static void crop(File source, File target, int x, int y, int w, int h) throws Exception {
         OutputStream output = null;
@@ -660,20 +621,13 @@ public class ImageUtil {
     /**
      * 裁剪图片
      *
-     * @param x
-     *            a int.
-     * @param y
-     *            a int.
-     * @param w
-     *            a int.
-     * @param h
-     *            a int.
-     * @param input
-     *            a {@link java.io.InputStream} object.
-     * @param output
-     *            a {@link java.io.OutputStream} object.
-     * @param isPNG
-     *            a boolean.
+     * @param x      a int.
+     * @param y      a int.
+     * @param w      a int.
+     * @param h      a int.
+     * @param input  a {@link java.io.InputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @param isPNG  a boolean.
      */
     public static void crop(InputStream input, OutputStream output, int x, int y, int w, int h, boolean isPNG)
             throws Exception {
@@ -712,12 +666,9 @@ public class ImageUtil {
     /**
      * 压缩图片,PNG图片按JPG处理
      *
-     * @param input
-     *            a {@link java.io.InputStream} object.
-     * @param output
-     *            a {@link java.io.OutputStream} object.
-     * @param quality
-     *            图片质量0-1之间
+     * @param input   a {@link java.io.InputStream} object.
+     * @param output  a {@link java.io.OutputStream} object.
+     * @param quality 图片质量0-1之间
      */
     public static final void optimize(InputStream input, OutputStream output, float quality) throws Exception {
 
@@ -766,12 +717,9 @@ public class ImageUtil {
     /**
      * 压缩图片
      *
-     * @param source
-     *            a {@link java.lang.String} object.
-     * @param target
-     *            a {@link java.lang.String} object.
-     * @param quality
-     *            a float.
+     * @param source  a {@link java.lang.String} object.
+     * @param target  a {@link java.lang.String} object.
+     * @param quality a float.
      */
     public static final void optimize(String source, String target, float quality) throws Exception {
         File fromFile = new File(source);
@@ -782,12 +730,9 @@ public class ImageUtil {
     /**
      * 压缩图片
      *
-     * @param source
-     *            a {@link java.io.File} object.
-     * @param target
-     *            a {@link java.io.File} object.
-     * @param quality
-     *            图片质量0-1之间
+     * @param source  a {@link java.io.File} object.
+     * @param target  a {@link java.io.File} object.
+     * @param quality 图片质量0-1之间
      */
     public static final void optimize(File source, File target, float quality) throws Exception {
         if (target.exists()) {
@@ -812,12 +757,9 @@ public class ImageUtil {
     /**
      * 制作圆角
      *
-     * @param srcFile
-     *            原文件
-     * @param destFile
-     *            目标文件
-     * @param cornerRadius
-     *            角度
+     * @param srcFile      原文件
+     * @param destFile     目标文件
+     * @param cornerRadius 角度
      */
     public static void makeRoundedCorner(File srcFile, File destFile, int cornerRadius) throws Exception {
         InputStream in = null;
@@ -841,12 +783,9 @@ public class ImageUtil {
     /**
      * 制作圆角
      *
-     * @param srcFile
-     *            原文件
-     * @param destFile
-     *            目标文件
-     * @param cornerRadius
-     *            角度
+     * @param srcFile      原文件
+     * @param destFile     目标文件
+     * @param cornerRadius 角度
      */
     public static void makeRoundedCorner(String srcFile, String destFile, int cornerRadius) throws Exception {
         makeRoundedCorner(new File(srcFile), new File(destFile), cornerRadius);
@@ -855,12 +794,9 @@ public class ImageUtil {
     /**
      * 制作圆角
      *
-     * @param inputStream
-     *            原图输入流
-     * @param outputStream
-     *            目标输出流
-     * @param radius
-     *            角度
+     * @param inputStream  原图输入流
+     * @param outputStream 目标输出流
+     * @param radius       角度
      */
     public static void makeRoundedCorner(final InputStream inputStream, final OutputStream outputStream,
                                          final int radius) throws Exception {
@@ -895,6 +831,7 @@ public class ImageUtil {
 
     /**
      * TODO 有点儿问题，,最后一级创建的是文件，而不是目录，待修改
+     *
      * @param path
      */
     private static void mkdirs(String path) {
@@ -906,3 +843,4 @@ public class ImageUtil {
             e.printStackTrace();
         }
     }
+}

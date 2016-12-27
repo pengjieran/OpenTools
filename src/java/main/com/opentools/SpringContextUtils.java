@@ -1,5 +1,10 @@
 package com.opentools;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 /**
  * Created by jieran.peng on 2016/12/1.
  */

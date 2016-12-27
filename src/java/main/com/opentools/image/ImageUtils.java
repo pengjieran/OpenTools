@@ -273,8 +273,7 @@ public class ImageUtils {
         }
     }
 
-    public final static void pressText(String pressText, String srcImageFile, String destImageFile, String fontName,
-                                       int fontStyle, Color color, int fontSize, int x, int y, float alpha) {
+    public final static void pressText(String pressText, String srcImageFile, String destImageFile, String fontName, int fontStyle, Color color, int fontSize, int x, int y, float alpha) {
         try {
             File img = new File(srcImageFile);
             Image src = ImageIO.read(img);

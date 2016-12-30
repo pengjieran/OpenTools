@@ -1,20 +1,14 @@
 package com.opentools.algorithm;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import com.opentools.common.CodeUtil;
+import org.junit.Test;
+
+import javax.crypto.Cipher;
+import java.io.*;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Cipher;
-
-import com.opentools.common.CodeUtil;
-import org.junit.Test;
 
 /**
  * 利用jdk实现的非对称加密算法，公钥给其他人用来加密的，私钥用于服务器端解密
@@ -135,7 +129,6 @@ public class RSASecurityUtil {
 		//byte[] b1 = decoder.decodeBuffer(cryptograph);
 		
 		byte[] b1 = CodeUtil.decodeBase64(cryptograph);
-		
 
 		/** 执行解密操作 */
 		byte[] b = cipher.doFinal(b1);
@@ -147,18 +140,18 @@ public class RSASecurityUtil {
 
 		String source = "恭喜发财!";// 要加密的字符串
 		System.out.println("准备用公钥加密的字符串为：" + source);
-
 		String cryptograph;
 		try {
 			cryptograph = RSASecurityUtil.encrypt(source);
-			System.out.print("用公钥加密后的结果为:" + cryptograph);
+			System.out.println("用公钥加密后的结果为:" + cryptograph);
+			File publicFile = new File(PUBLIC_KEY_FILE);
+			System.out.println("公钥地址为：" + publicFile.getAbsolutePath());
 			String target = RSASecurityUtil.decrypt(cryptograph);// 解密密文
 			System.out.println();
 			System.out.println("用私钥解密后的字符串为：" + target);
 			System.out.println();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}// 生成的密文
-
+		}
 	}
 }

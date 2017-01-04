@@ -15,8 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES {
 	
 	private static final String PASSWORD = "1234567890";
-	
-	
+
 	/**
 	 * 获取解密后的字符串
 	 * @param content

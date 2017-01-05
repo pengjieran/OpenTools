@@ -35,8 +35,7 @@ public class RSASecurityUtil {
 	 * @throws FileNotFoundException
 	 * @throws Exception
 	 */
-	private static void generateKeyPair() throws NoSuchAlgorithmException,
-			FileNotFoundException, IOException {
+	private static void generateKeyPair() throws NoSuchAlgorithmException, FileNotFoundException, IOException {
 
 		/** 为RSA算法创建一个KeyPairGenerator对象 */
 		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);
@@ -70,7 +69,7 @@ public class RSASecurityUtil {
 	}
 
 	/**
-	 * 加密方法
+	 * 公钥加密
 	 * 
 	 * @param source
 	 *            源数据
@@ -102,7 +101,7 @@ public class RSASecurityUtil {
 	}
 
 	/**
-	 * 解密算法
+	 * 私钥解密
 	 * 
 	 * @param cryptograph
 	 *            密文
@@ -125,9 +124,7 @@ public class RSASecurityUtil {
 		/** 得到Cipher对象对已用公钥加密的数据进行RSA解密 */
 		Cipher cipher = Cipher.getInstance(ALGORITHM);
 		cipher.init(Cipher.DECRYPT_MODE, privateKey);
-		//BASE64Decoder decoder = new BASE64Decoder();
-		//byte[] b1 = decoder.decodeBuffer(cryptograph);
-		
+
 		byte[] b1 = CodeUtil.decodeBase64(cryptograph);
 
 		/** 执行解密操作 */

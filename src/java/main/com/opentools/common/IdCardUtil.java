@@ -30,12 +30,10 @@ public class IdCardUtil extends StringUtils {
 			"62", "63", "64", "65", "71", "81", "82", "91" };
 
 	/** 每位加权因子 */
-	public static final int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9,
-			10, 5, 8, 4, 2 };
+	public static final int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
 
 	/** 第18位校检码 */
-	public static final String verifyCode[] = { "1", "0", "X", "9", "8", "7",
-			"6", "5", "4", "3", "2" };
+	public static final String verifyCode[] = { "1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2" };
 	/** 最低年限 */
 	public static final int MIN = 1930;
 

@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 利用jdk实现的非对称加密算法，公钥给其他人用来加密的，私钥用于服务器端解密
  * 
- * @author aaron
+ * @author Aaron
  * 
  */
 public class RSASecurityUtil {

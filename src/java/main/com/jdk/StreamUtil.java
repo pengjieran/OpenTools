@@ -1,5 +1,7 @@
 package com.jdk;
 
+import com.opentools.common.io.IOUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -64,14 +66,7 @@ public class StreamUtil {
 	 */
 	public static byte[] toBytes(Object object) throws IOException
 	{
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		ObjectOutputStream oos = new ObjectOutputStream(bos);
-		oos.writeObject(object);
-		oos.flush();
-		byte[] bytes = bos.toByteArray();
-		oos.close();
-		bos.close();
-		return bytes;
+		return IOUtils.toBytes(object);
 	}
 	
 	/**
@@ -83,11 +78,6 @@ public class StreamUtil {
 	 */
 	public static Object toObject(byte[] bytes) throws IOException, ClassNotFoundException
 	{
-		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-		ObjectInputStream ois = new ObjectInputStream(bis);
-		Object object = ois.readObject();
-		bis.close();
-		ois.close();
-		return object;
+		return IOUtils.toObject(bytes);
 	}
 }

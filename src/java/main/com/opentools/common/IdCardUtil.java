@@ -600,6 +600,7 @@ public class IdCardUtil extends StringUtils {
 	 * @return 是否有效
 	 */
 	public static boolean valiDate(int iYear, int iMonth, int iDate) {
+
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int datePerMonth;

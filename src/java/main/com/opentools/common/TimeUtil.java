@@ -84,15 +84,6 @@ public class TimeUtil {
 		//return 0;
 		return (System.nanoTime() / 1000000L);
 	}
-	
-	public static void main(String[] args) {
-		
-		for (int i = 0; i < 100; i++)
-		{
-			System.out.println(System.currentTimeMillis());
-			System.out.println(getMSTime());
-		}
-	}
-	
+
 	private TimeUtil(){}
 }

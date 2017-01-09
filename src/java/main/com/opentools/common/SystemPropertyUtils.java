@@ -91,11 +91,14 @@ public class SystemPropertyUtils {
 	public static String getFileSeparator() {
 		return System.getProperty("file.separator");
 	}
-	
+
+	/**
+	 * 获取操作系统名称
+	 * @return
+	 */
 	public static String getOSName() {
 		return System.getProperty("os.name");
 	}
 
-	private SystemPropertyUtils() {
-	}
+	private SystemPropertyUtils() {}
 }

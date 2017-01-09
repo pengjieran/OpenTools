@@ -70,7 +70,7 @@ public class CodeUtil {
 			Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
 			cipher.init(mode, securekey, iv, sr);
 			CipherInputStream cis = new CipherInputStream(new ByteArrayInputStream(src.getBytes()) , cipher);
-			return IOUtils.toString(cis);
+			return IOUtils.toString(cis, "UTF-8");
 		} catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | InvalidAlgorithmParameterException | IOException e) {
 			
 			e.printStackTrace();
@@ -137,17 +137,5 @@ public class CodeUtil {
 		
 		return DigestUtils.sha1Hex(src);
 	}
-	
-	@Test
-	public void test() {
-		
-		/*String md5 = CodeUtil.Md5("123456");
-		System.out.println(md5);
-		
-		String md5jdk = CodeUtil.MD5JDK("123456");
-		System.out.println(md5jdk);*/
-		
-		String string = CodeUtil.SHA512encode("123456");
-		System.out.println(string);
-	}
+
 }

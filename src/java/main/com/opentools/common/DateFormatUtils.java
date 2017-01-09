@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 时间日期格式化和解析工具类，线程安全的方式
- * @author Aaron		pjr0206@163.com
+ * @author Aaron
  *
  */
 

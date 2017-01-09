@@ -25,6 +25,8 @@ public class DbUtils {
 
     public static final String DBTYPE_SQLSERVER = "sqlserver";
 
+    public static final String DBTYPE_DB2 = "db2";
+
     /**
      *
      * @auther aaron
@@ -41,7 +43,7 @@ public class DbUtils {
      */
     public static Connection getConnection(String dbType,String dbIp, String dbPort, String dbName, String userName, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 
-        String driver = getDriver(dbType);
+        String driver = getDriverName(dbType);
         String url = getURL(dbType, dbIp, dbPort, dbName);
 
         Class.forName(driver).newInstance();
@@ -55,7 +57,7 @@ public class DbUtils {
      * @param dbType
      * @return
      */
-    public static String getDriver(String dbType) {
+    public static String getDriverName(String dbType) {
 
         String driverName = "";
         switch (dbType) {
@@ -75,6 +77,10 @@ public class DbUtils {
             case DBTYPE_SQLSERVER:
 
                 driverName = "com.microsoft.jdbc.sqlserver.SQLServerDriver";
+                break;
+            case DBTYPE_DB2:
+
+                driverName = "com.ibm.db2.jdbc.app.DB2Driver";
                 break;
             default:
 
@@ -115,6 +121,7 @@ public class DbUtils {
                 url = "jdbc:postgresql://" + dbIp + ":" + dbPort + "/" + dbName;
                 break;
             default:
+                url = "";
                 break;
         }
 

@@ -11,10 +11,10 @@ import java.util.Map;
 public final class ThreadLocalContext {
 	
 	private static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<Map<String, Object>>() {
-		
+
 		@Override
 		protected Map<String, Object> initialValue() {
-			
+
 			return new HashMap<String, Object>();
 		}
 	};

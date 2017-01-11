@@ -240,5 +240,4 @@ public class DateUtils {
         String date = new SimpleDateFormat(YMDHMS).format(new Date(timestamp));
         return date;
     }
-
 }

@@ -69,6 +69,7 @@ public final class DesEncoder {
 	 * 初始化 DES 加密算法的一些参数
 	 */
 	private void init() {
+		
 		Security.addProvider(new com.sun.crypto.provider.SunJCE());
 		try {
 			

@@ -35,7 +35,7 @@ public class RSASecurityUtil {
 	 * @throws FileNotFoundException
 	 * @throws Exception
 	 */
-	private static void generateKeyPair() throws NoSuchAlgorithmException, FileNotFoundException, IOException {
+	private static void generateKeyPair() throws NoSuchAlgorithmException, IOException {
 
 		/** 为RSA算法创建一个KeyPairGenerator对象 */
 		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);
@@ -50,7 +50,7 @@ public class RSASecurityUtil {
 
 		/** 得到私钥 */
 		Key privateKey = keyPair.getPrivate();
-
+		
 		ObjectOutputStream oos1 = null;
 		ObjectOutputStream oos2 = null;
 		try {

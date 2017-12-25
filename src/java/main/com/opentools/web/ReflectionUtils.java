@@ -164,10 +164,10 @@ public final class ReflectionUtils {
 	 * @param collection 来源集合.
 	 * @param propertityName 要提取的属性名.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes" })
 	public static List fetchElementPropertyToList(final Collection collection, final String propertyName) throws Exception {
 
-		List<Object> list = new ArrayList<Object>();
+		List<Object> list = new ArrayList<>();
 
 		for (Object obj : collection) {
 			

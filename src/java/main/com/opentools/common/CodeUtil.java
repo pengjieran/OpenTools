@@ -22,7 +22,6 @@ import javax.crypto.spec.IvParameterSpec;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
-import org.junit.Test;
 
 /**
  * 使用jdk原生的编解码方式对某个指定数据加密解密

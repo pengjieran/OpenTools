@@ -120,9 +120,10 @@ public class DbUtils {
 
                 url = "jdbc:postgresql://" + dbIp + ":" + dbPort + "/" + dbName;
                 break;
-            default:
-                url = "";
-                break;
+            case DBTYPE_SQLSERVER:
+            	
+            	url = "jdbc:sqlserver://" + dbIp + ":" + dbPort + ";DatabaseName=" + dbName;
+            	break;
         }
 
         return url;
